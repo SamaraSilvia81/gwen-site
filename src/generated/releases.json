@@ -1,0 +1,13 @@
+{
+  "fetchedAt": "2026-11-14T22:00:00.000Z",
+  "releases": [
+    {
+      "tag": "v0.9.1",
+      "name": "G.W.E.N. v0.9.1",
+      "date": "2026-11-14T21:58:00Z",
+      "url": "https://github.com/SamaraSilvia81/gwen-app/releases/tag/v0.9.1",
+      "notes": "",
+      "exe": { "name": "GWEN_0.9.1_x64-setup.exe", "size": 5305000, "url": "https://github.com/SamaraSilvia81/gwen-app/releases/download/v0.9.1/GWEN_0.9.1_x64-setup.exe" }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "gwen-site",
+  "private": true,
+  "license": "UNLICENSED",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Site da G.W.E.N.: landing e novidades, ligado às releases do gwen-app",
+  "scripts": {
+    "releases": "node scripts/fetch-release.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/fetch-release.mjs",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/jetbrains-mono": "^5.2.5",
+    "@fontsource-variable/space-grotesk": "^5.2.5",
+    "@phosphor-icons/web": "^2.1.1",
+    "marked": "^15.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "@vitejs/plugin-react": "^4.4.1",
+    "tailwindcss": "^4.1.4",
+    "vite": "^6.3.2"
+  }
+}
