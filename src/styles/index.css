@@ -821,3 +821,44 @@ section.s.mais{padding-top:clamp(100px,12vw,160px)}
 .paper-reqs b{color:var(--paper-ink)}
 .paper-reqs small,.paper-reqs span{color:var(--paper-muted)}
 @media (max-width:1000px){.shot-text-row{grid-template-columns:1fr}}
+/* casos e depoimentos, no escuro, redesenhados */
+.casos-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:clamp(40px,5vw,64px)}
+.casos-count{display:flex;align-items:baseline;gap:12px;font-family:var(--f-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.casos-count b{font-family:var(--f-display);font-size:clamp(48px,5vw,76px);font-weight:700;letter-spacing:-.05em;color:var(--bone);line-height:.9}
+.case-hero{position:relative;border:1px solid var(--rule-2);border-radius:24px;padding:clamp(34px,5vw,64px);background:radial-gradient(120% 140% at 0% 0%,#1b1b1e,var(--ink) 60%);overflow:hidden}
+.case-hero-mark{position:absolute;top:-.18em;right:.08em;font-family:var(--f-display);font-weight:700;font-size:clamp(220px,22vw,340px);line-height:1;color:rgba(237,235,231,.06);pointer-events:none}
+.case-hero blockquote{position:relative;max-width:980px;font-family:var(--f-display);font-weight:500;font-size:clamp(26px,2.9vw,42px);line-height:1.2;letter-spacing:-.025em;color:var(--bone)}
+.case-hero blockquote em{font-style:normal;color:transparent;-webkit-text-stroke:1.2px rgba(237,235,231,.85)}
+.case-hero figcaption{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;margin-top:clamp(30px,4vw,48px);padding-top:clamp(22px,3vw,30px);border-top:1px solid var(--rule)}
+.case-hero-who{display:flex;align-items:center;gap:14px}
+.case-hero-who .av{width:52px;height:52px;border-radius:50%;background:var(--bone);color:var(--void);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:22px}
+.case-hero-who b{display:block;font-family:var(--f-display);font-weight:600;font-size:18px}
+.case-hero-who small{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.case-hero-facts{display:flex;gap:clamp(18px,3vw,40px);flex-wrap:wrap}
+.case-hero-facts span{font-size:14.5px;color:var(--bone-2)}
+.case-hero-facts small{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.case-hero-tag{position:absolute;top:22px;left:22px;font-family:var(--f-mono);font-size:11.5px;color:var(--muted);border:1px solid var(--rule-2);border-radius:999px;padding:3px 10px}
+.case-hero blockquote{margin-top:22px}
+/* faixas de depoimentos */
+.dq-rows{display:grid;gap:16px;margin-top:clamp(40px,5vw,64px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.dq-row{overflow:hidden}
+.dq-track{display:flex;gap:16px;width:max-content;animation:dq 60s linear infinite}
+.dq-row.rev .dq-track{animation-direction:reverse;animation-duration:70s}
+.dq-rows:hover .dq-track{animation-play-state:paused}
+@keyframes dq{to{transform:translateX(-33.333%)}}
+.dq{position:relative;flex:none;width:clamp(320px,26vw,420px);margin:0;border:1px solid var(--rule);border-radius:var(--r);background:var(--surface);padding:26px 26px 22px;display:flex;flex-direction:column;transition:border-color .3s,background .3s}
+.dq:hover{border-color:var(--rule-2);background:#17171a}
+.dq blockquote{font-family:var(--f-display);font-size:17.5px;line-height:1.45;letter-spacing:-.01em;color:var(--bone);flex:1}
+.dq blockquote::before{content:'“';display:block;font-size:40px;line-height:.6;margin-bottom:12px;color:var(--rule-2)}
+.dq figcaption{display:flex;gap:12px;align-items:center;margin-top:20px}
+.dq-av{width:38px;height:38px;border-radius:50%;background:var(--surface-2);border:1px solid var(--rule-2);display:grid;place-items:center;font-family:var(--f-display);font-weight:600;font-size:13px;color:var(--bone)}
+.dq figcaption b{display:block;font-family:var(--f-display);font-weight:600;font-size:15px}
+.dq figcaption small{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.dq-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.dq-tags span{font-family:var(--f-mono);font-size:11px;border:1px solid var(--rule-2);border-radius:999px;padding:3px 9px;color:var(--bone-2)}
+.dq-ex{position:absolute;top:18px;right:18px;font-family:var(--f-mono);font-size:10.5px;color:#f5a524;border:1px dashed rgba(245,165,36,.5);border-radius:999px;padding:2px 8px}
+.dq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;max-width:var(--max);margin:clamp(40px,5vw,64px) auto 0;padding:0 var(--gut)}
+.dq-grid .dq{width:auto}
+.casos .slot{margin-top:clamp(40px,5vw,64px)}
+@media (max-width:760px){.casos-head{flex-direction:column;align-items:flex-start}.case-hero figcaption{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion:reduce){.dq-track{animation:none}}

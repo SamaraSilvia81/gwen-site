@@ -39,7 +39,7 @@ const STRIP = params.get('strip') === 'a' ? 'a' : 'b'
 // b = hero limpo com seta; depois faixa, print + card 2x2 e o texto
 // c = igual ao b, mas o print + card 2x2 vem depois dos números
 // d = faixa, texto e números; depois seção clara com print e texto; o card de requisitos (1x4) vai para o "como usar"
-const LAY = ['b', 'c', 'd'].includes(params.get('lay')) ? params.get('lay') : 'a'
+const LAY = ['a', 'b', 'c'].includes(params.get('lay')) ? params.get('lay') : 'd'
 // monta o link do painel mantendo os outros testes como estão
 const abLink = (over, hash = '') => {
   const q = { hero: HERO, lay: LAY, mf: MF, nums: NUMS, strip: STRIP, ...over }
