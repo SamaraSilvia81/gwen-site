@@ -586,19 +586,24 @@ section[id]{scroll-margin-top:84px}
 /* hero D: laterais desfocadas como foco de câmera (o desfoque cresce em 3 camadas até a borda) + blobs de luz */
 .hero-dof{display:none;position:absolute;inset:0;z-index:-2;pointer-events:none}
 .hero-dof i{position:absolute;inset:0}
-.hero-dof i:nth-child(1){backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+.hero-dof i:nth-child(1){backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
   -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 22%,transparent 34%,transparent 66%,#000 78%,#000 100%);mask-image:linear-gradient(90deg,#000 0%,#000 22%,transparent 34%,transparent 66%,#000 78%,#000 100%)}
-.hero-dof i:nth-child(2){backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+.hero-dof i:nth-child(2){backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
   -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 12%,transparent 24%,transparent 76%,#000 88%,#000 100%);mask-image:linear-gradient(90deg,#000 0%,#000 12%,transparent 24%,transparent 76%,#000 88%,#000 100%)}
-.hero-dof i:nth-child(3){backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+.hero-dof i:nth-child(3){backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 13%,transparent 87%,#000 100%);mask-image:linear-gradient(90deg,#000 0%,transparent 13%,transparent 87%,#000 100%)}
 .hero[data-v="d"] .hero-dof{display:block}
-/* blobs por cima do wallpaper: sem fundo preto, sem grade, só luz nas laterais */
-.hero[data-v="d"] .blobs{display:block;background:transparent;z-index:-1;mix-blend-mode:screen}
+/* blobs escuros por cima do wallpaper: sombras que passeiam nas laterais e deixam o fundo aparecer entre elas */
+.hero[data-v="d"] .blobs{display:block;background:transparent;z-index:-1}
 .hero[data-v="d"] .blobs .lines{display:none}
-.hero[data-v="d"] .blob.b1{opacity:.16}
-.hero[data-v="d"] .blob.b2{opacity:.13}
-.hero[data-v="d"] .blob.b3{left:auto;right:58%;bottom:-120px;opacity:.1}
+.hero[data-v="d"] .blob{background:#000;filter:blur(70px)}
+.hero[data-v="d"] .blob.b1{width:520px;height:620px;left:-160px;top:6%;opacity:.7}
+.hero[data-v="d"] .blob.b2{width:480px;height:560px;right:-150px;left:auto;top:30%;opacity:.65}
+.hero[data-v="d"] .blob.b3{width:420px;height:420px;left:auto;right:4%;top:-120px;bottom:auto;opacity:.5}
 @media (max-width:760px){.hero-dof i:nth-child(1){-webkit-mask-image:linear-gradient(90deg,#000,transparent 22%,transparent 78%,#000);mask-image:linear-gradient(90deg,#000,transparent 22%,transparent 78%,#000)}
   .hero-dof i:nth-child(2){-webkit-mask-image:linear-gradient(90deg,#000,transparent 14%,transparent 86%,#000);mask-image:linear-gradient(90deg,#000,transparent 14%,transparent 86%,#000)}
   .hero-dof i:nth-child(3){-webkit-mask-image:linear-gradient(90deg,#000,transparent 7%,transparent 93%,#000);mask-image:linear-gradient(90deg,#000,transparent 7%,transparent 93%,#000)}}
+/* D: blob escuro no meio, atrás dos textos (luz ao contrário: sombra que respira) */
+.hero[data-v="d"] .hero-c::after{content:'';position:absolute;z-index:-2;left:50%;top:50%;width:min(2100px,165%);height:230%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(0,0,0,.9),rgba(0,0,0,.72) 40%,rgba(0,0,0,.35) 72%,transparent);filter:blur(70px);pointer-events:none;animation:blobDark 18s ease-in-out infinite alternate}
+@keyframes blobDark{0%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-47%,-52%) scale(1.06)}100%{transform:translate(-53%,-48%) scale(.97)}}

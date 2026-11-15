@@ -21,7 +21,7 @@ import { useRelease } from './lib/release'
 import { landingEffects, playIntro } from './lib/effects'
 
 const params = new URLSearchParams(location.search)
-const HERO = ['a', 'b', 'c', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : 'a'
+const HERO = ['a', 'b', 'c', 'd'].includes(params.get('hero')) ? params.get('hero') : 'a'
 // painel do teste A/B: aparece no dev ou com ?ab no endereço
 const SHOW_AB = import.meta.env.DEV || params.has('ab')
 
@@ -54,7 +54,7 @@ function Landing({ release }) {
         <i className="ph-bold ph-arrow-up"></i>
       </a>
       {SHOW_AB && (
-        <div className="ab">hero {['a', 'b', 'c', 'd', 'e'].map((v) => <a key={v} href={`?hero=${v}${params.has('ab') ? '&ab' : ''}`} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}</div>
+        <div className="ab">hero {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={`?hero=${v}${params.has('ab') ? '&ab' : ''}`} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}</div>
       )}
     </>
   )

@@ -4,7 +4,7 @@ export default function Hero({ release, variant }) {
 <header className="hero" id="topo" data-v={variant}>
   <div className="hero-top">
     <div className="hero-bg" aria-hidden="true"></div>
-    <div className="hero-frost" aria-hidden="true"></div>
+    <div className="hero-dof" aria-hidden="true"><i></i><i></i><i></i></div>
     <div className="blobs" aria-hidden="true"><span className="blob b1"></span><span className="blob b2"></span><span className="blob b3"></span><span className="lines"></span></div>
     <div className="hero-c">
       <span className="badge"><em>beta</em><span>{release.tag} · para Windows 10 e 11</span></span>
