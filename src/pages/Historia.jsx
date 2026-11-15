@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import ToTop from '../components/ToTop'
 import { ORIGEM, NOME, COMO_COMECOU, VERSOES, PROXIMAS, PRINCIPIOS, QUEM_FEZ } from '../content/historia'
 
 /** História: de onde a G.W.E.N. veio, o que o nome quer dizer, as versões e quem fez */
@@ -116,7 +117,7 @@ export default function Historia({ release }) {
         <section className="s paper hist-quem">
           <div className="wrap">
             <div className="maker rv">
-              <div className="avatar">S</div>
+              <div className="avatar"><img src="/samara.webp" alt="Samara Silvia Sabino" width="896" height="921" /></div>
               <div>
                 <span className="label">$ gwen <b>--quem-fez</b></span>
                 <h3 style={{ marginTop: 14 }}>{QUEM_FEZ.nome}</h3>
@@ -124,7 +125,7 @@ export default function Historia({ release }) {
                 <p>{QUEM_FEZ.texto}</p>
                 <div className="links">
                   <a href={release.downloadUrl} className="btn btn-ink"><i className="ph-fill ph-windows-logo"></i>Baixar a G.W.E.N.</a>
-                  <a href="/contato" className="btn btn-ghost"><i className="ph ph-chat-circle-dots"></i>Falar comigo</a>
+                  <a href="/contato" className="btn btn-ghost"><i className="ph ph-chat-circle-dots"></i>Falar com ela</a>
                 </div>
               </div>
             </div>
@@ -132,6 +133,7 @@ export default function Historia({ release }) {
         </section>
       </main>
       <Footer release={release} />
+      <ToTop />
     </>
   )
 }

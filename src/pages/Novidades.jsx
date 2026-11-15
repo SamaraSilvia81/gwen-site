@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { marked } from 'marked'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import ToTop from '../components/ToTop'
 import { useReleases } from '../lib/release'
 
 const fmt = (d) => (d ? new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }) : '')
@@ -38,6 +39,7 @@ export default function Novidades({ release }) {
         ))}
       </div>
       <Footer release={release} />
+      <ToTop />
     </>
   )
 }

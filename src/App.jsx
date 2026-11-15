@@ -21,6 +21,7 @@ import Duvidas from './sections/Duvidas'
 import Final from './sections/Final'
 import Novidades from './pages/Novidades'
 import Historia from './pages/Historia'
+import ToTop from './components/ToTop'
 import { useRelease } from './lib/release'
 import { landingEffects, playIntro } from './lib/effects'
 
@@ -82,10 +83,7 @@ function Landing({ release }) {
       </main>
       <Final release={release} />
       <Footer release={release} />
-      <a href="#topo" className="totop" id="totop" aria-label="Voltar ao topo">
-        <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" /></svg>
-        <i className="ph-bold ph-arrow-up"></i>
-      </a>
+      <ToTop />
       {SHOW_AB && (
         <div className={`ab${abOpen ? '' : ' closed'}`}>
           <button className="ab-tog" onClick={() => setAbOpen(!abOpen)} aria-label={abOpen ? 'Recolher testes' : 'Abrir testes'}><i className={`ph ${abOpen ? 'ph-caret-left' : 'ph-flask'}`}></i>{!abOpen && 'testes'}</button>

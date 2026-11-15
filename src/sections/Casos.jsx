@@ -19,7 +19,7 @@ export default function Casos() {
           <span className="case-hero-mark" aria-hidden="true">“</span>
           <blockquote>Uso todos os dias para alternar entre clientes, a dissertação e os meus produtos. O Começar agora tirou a fricção de trocar de contexto, e a <em>pausa virou hábito.</em></blockquote>
           <figcaption>
-            <span className="case-hero-who"><span className="av">S</span><span><b>Samara Silvia Sabino</b><small>criadora · dev frontend e ux/ui · mestranda</small></span></span>
+            <span className="case-hero-who"><span className="av"><img src="/samara.webp" alt="" width="896" height="921" /></span><span><b>Samara Silvia Sabino</b><small>criadora · dev frontend e ux/ui · mestranda</small></span></span>
             <span className="case-hero-facts">
               <span><small>uso</small>diário, desde a primeira versão</span>
               <span><small>projetos</small>freelance, pesquisa e produtos</span>

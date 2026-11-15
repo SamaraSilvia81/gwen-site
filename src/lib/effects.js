@@ -18,8 +18,6 @@ export function landingEffects() {
       heroWin.style.setProperty('--sc', (0.92 + 0.08 * p).toFixed(3))
     }
     const max = document.documentElement.scrollHeight - innerHeight
-    totop?.classList.toggle('show', y > innerHeight * 0.8)
-    totop?.style.setProperty('--off', (176 - 176 * (y / max)).toFixed(1))
   }
   addEventListener('scroll', onScroll, { passive: true }); onScroll()
   off.push(() => removeEventListener('scroll', onScroll))
