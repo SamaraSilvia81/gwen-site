@@ -113,7 +113,7 @@ img{display:block;max-width:100%}
 @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 /* janela do app */
-.shot-stage{perspective:1600px;margin:-8vh auto 0;max-width:1180px;padding:0 var(--gut);position:relative;z-index:2}
+.shot-stage{perspective:1600px;margin:-2vh auto 0;max-width:1180px;padding:0 var(--gut);position:relative;z-index:2}
 .win{position:relative;border-radius:16px;background:var(--ink);border:1px solid var(--rule-2);box-shadow:0 60px 140px -30px rgba(0,0,0,.9);overflow:hidden;transform-origin:50% 0;transform:rotateX(var(--tilt,22deg)) scale(var(--sc,.92))}
 .win-bar{display:flex;align-items:center;justify-content:space-between;height:36px;padding:0 14px;border-bottom:1px solid var(--rule);font-family:var(--f-mono);font-size:11px;color:var(--dim)}
 .win-bar .dots{display:flex;gap:7px}.win-bar .dots i{width:10px;height:10px;border-radius:50%;background:var(--rule-2);display:block}
@@ -306,7 +306,7 @@ section.s{padding:clamp(100px,12vw,160px) 0;position:relative}
 .faq details p{color:var(--muted);font-size:16.5px;padding:0 40px 26px 0;max-width:680px}
 
 /* CTA final + requisitos */
-.final{position:relative;overflow:hidden;isolation:isolate;padding:clamp(120px,15vw,190px) 0 clamp(80px,10vw,120px);text-align:center;border-top:1px solid var(--rule)}
+.final{position:relative;overflow:hidden;isolation:isolate;padding:clamp(80px,9.6vw,128px) 0 clamp(80px,10vw,120px);text-align:center;border-top:1px solid var(--rule)}
 .final-bg{position:absolute;inset:0;z-index:-2;background:#000 url(/wallpaper-hero.webp) center/cover no-repeat}
 .final::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--void),transparent 16%,transparent 84%,var(--void))}
 .final-c{position:relative}
@@ -613,7 +613,7 @@ section[id]{scroll-margin-top:84px}
 @media (max-width:600px){.intro-logo svg{width:60px;height:60px}.intro-logo span{font-size:26px}}
 /* entrada do hero depois da abertura C: o fundo acende devagar e o resto chega em sequência */
 .intro-run .nav,.intro-run .hero-bg,.intro-run .hero-dof,.intro-run .hero .blobs,.intro-run .hero-c::before,.intro-run .hero-c::after,
-.intro-run .badge,.intro-run .lede,.intro-run .cta,.intro-run .shot-stage,.intro-run .strip,.intro-run .strip-cta{opacity:0;animation:none}
+.intro-run .badge,.intro-run .lede,.intro-run .cta,.intro-run .hero-reqs,.intro-run .shot-stage,.intro-run .strip,.intro-run .strip-cta{opacity:0;animation:none}
 .intro-run .h1 .l>span{animation:none;transform:translateY(105%)}
 @keyframes bgIn{from{opacity:0;filter:blur(24px) brightness(1.8)}to{opacity:1;filter:none}}
 @keyframes softIn{from{opacity:0}to{opacity:1}}
@@ -788,3 +788,10 @@ section.s.mais{padding-top:clamp(100px,12vw,160px)}
 .paper .orbit{border-color:rgba(10,10,11,.25)}
 .paper .orbit i{background:var(--paper-ink);color:var(--paper)}
 .paper .sw.on{border-color:var(--paper-ink)}
+/* requisitos resumidos no hero (a versão completa fica no fim da página) */
+.hero-reqs{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 22px;margin-top:28px;font-family:var(--f-mono);font-size:15px;color:var(--bone-2);text-shadow:0 2px 14px rgba(0,0,0,.8);opacity:0;animation:fade .9s .8s var(--ease) forwards}
+.hero-reqs span{display:inline-flex;align-items:center;gap:8px}
+.hero-reqs i{font-size:17px}
+.hero-reqs a{color:var(--bone);border-bottom:1px solid rgba(237,235,231,.5)}
+.hero-reqs a:hover{border-color:var(--bone)}
+.hero-in .hero-reqs{animation:fade .9s 1.6s var(--ease) both}
