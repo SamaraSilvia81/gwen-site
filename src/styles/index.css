@@ -764,3 +764,27 @@ section.s.casos{padding-top:clamp(100px,12vw,160px)}
 .paper .plan.hl .btn-ink{background:var(--paper);color:var(--paper-ink)}
 .paper .hov:hover{border-color:rgba(10,10,11,.4)}
 .paper .hov::before{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(10,10,11,.05),transparent 60%)}
+/* atalho para as novidades, ao lado do Baixar grátis */
+.nav-news{position:relative;width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;color:var(--bone);background:rgba(10,10,11,.62);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);transition:border-color .25s,background .25s}
+.nav-news i{font-size:20px}
+.nav-news:hover{border-color:var(--bone);background:rgba(10,10,11,.8)}
+.nav-news:hover i{animation:ring .6s var(--ease)}
+.nav-news-dot{position:absolute;top:9px;right:10px;width:9px;height:9px;border-radius:50%;background:var(--bone);box-shadow:0 0 0 2px #0a0a0b}
+.nav-news-dot::after{content:'';position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--bone);animation:here 2.4s var(--ease) infinite}
+.nav-news-tip{position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,-4px);white-space:nowrap;font-family:var(--f-mono);font-size:12px;color:var(--void);background:var(--bone);border-radius:999px;padding:6px 12px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s var(--ease)}
+.nav-news:hover .nav-news-tip,.nav-news:focus-visible .nav-news-tip{opacity:1;transform:translate(-50%,0)}
+@keyframes ring{0%,100%{transform:rotate(0)}25%{transform:rotate(14deg)}50%{transform:rotate(-12deg)}75%{transform:rotate(6deg)}}
+/* "e o resto que faz falta" no claro */
+section.s.mais{padding-top:clamp(100px,12vw,160px)}
+.paper .card{background:#F6F4F0;border-color:var(--paper-rule);color:var(--paper-ink)}
+.paper .card::before{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(10,10,11,.05),transparent 60%)}
+.paper .card:hover{border-color:rgba(10,10,11,.4)}
+.paper .card p,.paper .swatches small{color:var(--paper-muted)}
+.paper .card .peek,.paper .themeshow{border-color:var(--paper-rule)}
+.paper .envs span{border-color:var(--paper-rule);color:var(--paper-ink)}
+.paper .envs span.on{background:var(--paper-ink);color:var(--paper);border-color:var(--paper-ink)}
+.paper .keys div{color:var(--paper-ink);border-bottom-color:var(--paper-rule)}
+.paper .kbd{background:var(--paper);color:var(--paper-ink);border-color:var(--paper-rule)}
+.paper .orbit{border-color:rgba(10,10,11,.25)}
+.paper .orbit i{background:var(--paper-ink);color:var(--paper)}
+.paper .sw.on{border-color:var(--paper-ink)}

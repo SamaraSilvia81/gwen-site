@@ -2,7 +2,7 @@ export default function Mais() {
   return (
     <>
 {/* ============ 5. E O RESTO ============ */}
-<section className="s" style={{paddingTop:'0'}}>
+<section className="s paper mais" id="mais">
   <div className="wrap">
     <div className="s-head rv">
       <span className="label">$ gwen <b>--mais</b></span>

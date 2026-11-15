@@ -22,6 +22,9 @@ export default function Nav({ release }) {
     return () => { removeEventListener('scroll', close); removeEventListener('resize', close) }
   }, [open])
 
+  // bolinha no sino quando a última versão saiu há menos de 21 dias
+  const isNew = release.date ? Date.now() - new Date(release.date).getTime() < 21 * 864e5 : false
+
   return (
     <nav className={`nav ${open ? 'menu-open' : ''}`} id="nav">
       <div className="nav-in">
@@ -33,6 +36,11 @@ export default function Nav({ release }) {
           {LINKS.map(([label, href]) => <li key={href}><a href={href}>{label}</a></li>)}
         </ul>
         <div className="nav-r">
+          <a href="/novidades" className="nav-news" aria-label={`Novidades da versão ${release.tag}`}>
+            <i className="ph ph-bell"></i>
+            {isNew && <span className="nav-news-dot" aria-hidden="true"></span>}
+            <span className="nav-news-tip">Novidades · {release.tag}</span>
+          </a>
           <a href="/#baixar" className="btn btn-solid"><i className="ph-bold ph-download-simple"></i>Baixar grátis</a>
           <button className="nav-burger" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="nav-menu" aria-label={open ? 'Fechar menu' : 'Abrir menu'}>
             <i className={`ph-bold ${open ? 'ph-x' : 'ph-list'}`}></i>
