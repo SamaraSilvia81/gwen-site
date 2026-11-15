@@ -80,14 +80,39 @@ export function landingEffects() {
 }
 
 /* som de clique sintetizado; o navegador só libera áudio depois da primeira interação */
-let actx
+let actx, clickBuf
+const audio = () => {
+  actx = actx || new (window.AudioContext || window.webkitAudioContext)()
+  if (actx.state === 'suspended') actx.resume().catch(() => {})
+  return actx
+}
+// o navegador só libera som depois de um gesto: se a pessoa tocar na página, o áudio destrava
+const unlock = () => { try { audio() } catch { /* sem áudio */ } }
+function loadClick() {
+  try {
+    fetch('/sounds/click.mp3').then((r) => r.arrayBuffer()).then((b) => audio().decodeAudioData(b)).then((buf) => { clickBuf = buf }).catch(() => {})
+  } catch { /* sem áudio */ }
+}
+// clique do mouse: o som que a Samara escolheu (public/sounds/click.mp3)
 function clickSound() {
   try {
-    actx = actx || new (window.AudioContext || window.webkitAudioContext)()
-    const t = actx.currentTime, o = actx.createOscillator(), g = actx.createGain()
-    o.type = 'square'; o.frequency.setValueAtTime(1800, t); o.frequency.exponentialRampToValueAtTime(320, t + 0.05)
-    g.gain.setValueAtTime(0.18, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.07)
-    o.connect(g).connect(actx.destination); o.start(t); o.stop(t + 0.08)
+    if (!clickBuf) return
+    const a = audio(), src = a.createBufferSource(), g = a.createGain()
+    src.buffer = clickBuf; g.gain.value = 0.9
+    src.connect(g).connect(a.destination); src.start()
+  } catch { /* sem áudio */ }
+}
+// tecla: um estalo curto de ruído filtrado, com timbre um pouco diferente a cada letra
+function keySound(space) {
+  try {
+    const a = audio(), t = a.currentTime, len = 0.045
+    const buf = a.createBuffer(1, Math.ceil(a.sampleRate * len), a.sampleRate), d = buf.getChannelData(0)
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 6)
+    const src = a.createBufferSource(), bp = a.createBiquadFilter(), g = a.createGain()
+    src.buffer = buf
+    bp.type = 'bandpass'; bp.frequency.value = (space ? 900 : 1900) + Math.random() * 900; bp.Q.value = 1.4
+    g.gain.setValueAtTime(space ? 0.32 : 0.24 + Math.random() * 0.08, t)
+    src.connect(bp).connect(g).connect(a.destination); src.start(t)
   } catch { /* sem áudio */ }
 }
 
@@ -97,6 +122,7 @@ export function playIntro(onDone) {
   const cur = document.getElementById('cursor'), rip = document.getElementById('ripple'), logo = document.getElementById('introLogo')
   if (!intro) return () => {}
   document.body.style.overflow = 'hidden'
+  loadClick(); addEventListener('pointerdown', unlock, { once: true }); addEventListener('keydown', unlock, { once: true })
   const wait = (ms) => new Promise((r) => setTimeout(r, ms))
   let done = false
   const finish = () => { if (done) return; done = true; intro.classList.add('gone'); document.body.style.overflow = ''; setTimeout(onDone, 750) }
@@ -104,7 +130,7 @@ export function playIntro(onDone) {
   const type = async (txt, cls) => {
     const span = document.createElement('span'); if (cls) span.className = cls
     T.insertBefore(span, T.querySelector('.caret'))
-    for (const ch of txt) { if (done) return; span.textContent += ch; await wait(ch === ' ' ? 40 : 55 + Math.random() * 40) }
+    for (const ch of txt) { if (done) return; span.textContent += ch; keySound(ch === ' '); await wait(ch === ' ' ? 40 : 55 + Math.random() * 40) }
   }
   ;(async () => {
     T.innerHTML = '<span class="caret"></span>'

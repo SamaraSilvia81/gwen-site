@@ -33,7 +33,8 @@ function Landing({ release }) {
     <>
       {intro && <Intro />}
       <Nav release={release} />
-      <Hero release={release} variant={HERO} />
+      {/* C é só a abertura: ao terminar, a página segue no visual do D */}
+      <Hero release={release} variant={HERO === 'c' ? 'd' : HERO} />
       <main className="z90">
         <Dia />
         <ComoUsar />
