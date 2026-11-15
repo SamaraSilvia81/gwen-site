@@ -604,6 +604,6 @@ section[id]{scroll-margin-top:84px}
   .hero-dof i:nth-child(2){-webkit-mask-image:linear-gradient(90deg,#000,transparent 14%,transparent 86%,#000);mask-image:linear-gradient(90deg,#000,transparent 14%,transparent 86%,#000)}
   .hero-dof i:nth-child(3){-webkit-mask-image:linear-gradient(90deg,#000,transparent 7%,transparent 93%,#000);mask-image:linear-gradient(90deg,#000,transparent 7%,transparent 93%,#000)}}
 /* D: blob escuro no meio, atrás dos textos (luz ao contrário: sombra que respira) */
-.hero[data-v="d"] .hero-c::after{content:'';position:absolute;z-index:-2;left:50%;top:50%;width:min(2100px,165%);height:230%;transform:translate(-50%,-50%);border-radius:50%;
-  background:radial-gradient(closest-side,rgba(0,0,0,.9),rgba(0,0,0,.72) 40%,rgba(0,0,0,.35) 72%,transparent);filter:blur(70px);pointer-events:none;animation:blobDark 18s ease-in-out infinite alternate}
+.hero[data-v="d"] .hero-c::after{content:'';position:absolute;z-index:-2;left:50%;top:50%;width:min(2600px,200%);height:280%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(0,0,0,.95),rgba(0,0,0,.82) 45%,rgba(0,0,0,.45) 75%,transparent);filter:blur(70px);pointer-events:none;animation:blobDark 18s ease-in-out infinite alternate}
 @keyframes blobDark{0%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-47%,-52%) scale(1.06)}100%{transform:translate(-53%,-48%) scale(.97)}}
