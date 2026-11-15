@@ -1,15 +1,16 @@
-// Edge Function do Supabase: manda os e-mails do formulário de contato do site da G.W.E.N. pelo Resend.
+// Edge Function do Supabase: manda os e-mails do formulário de contato do site da G.W.E.N. pelo seu Gmail (SMTP).
 // Disparada por um Database Webhook no INSERT de public.gwen_site_messages.
 //   1) avisa a Samara que chegou mensagem (com link do anexo, se houver)
 //   2) manda a confirmação para quem escreveu
 //
 // Segredos (Edge Functions > Secrets):
-//   RESEND_API_KEY   chave do Resend
-//   CONTATO_PARA     e-mail que recebe os avisos (o seu)
-//   CONTATO_DE       remetente, ex.: G.W.E.N. <contato@seudominio.com> (sem domínio verificado: onboarding@resend.dev)
+//   GMAIL_USER          o seu Gmail, que envia e recebe tudo
+//   GMAIL_APP_PASSWORD  senha de app do Google (16 letras), não a senha normal da conta
+// O Supabase só libera a porta 465 para SMTP, por isso ela está fixa aqui.
 // SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY já existem em toda Edge Function.
 
 import { createClient } from 'npm:@supabase/supabase-js@2'
+import nodemailer from 'npm:nodemailer@6'
 
 const ASSUNTOS: Record<string, string> = {
   sugestao: 'Sugestão',
@@ -33,13 +34,16 @@ const moldura = (titulo: string, corpo: string) => `<!doctype html><html><body s
     <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#55555C;margin-top:18px">Gestão de Wellness, Eficiência e Navegação</p>
   </td></tr></table></body></html>`
 
+const USER = Deno.env.get('GMAIL_USER')!
+const smtp = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: { user: USER, pass: Deno.env.get('GMAIL_APP_PASSWORD') },
+})
+
 async function enviar(para: string, assunto: string, html: string, responderPara?: string) {
-  const r = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${Deno.env.get('RESEND_API_KEY')}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: Deno.env.get('CONTATO_DE'), to: [para], subject: assunto, html, ...(responderPara ? { reply_to: responderPara } : {}) }),
-  })
-  if (!r.ok) throw new Error(`Resend ${r.status}: ${await r.text()}`)
+  await smtp.sendMail({ from: `G.W.E.N. <${USER}>`, to: para, subject: assunto, html, ...(responderPara ? { replyTo: responderPara } : {}) })
 }
 
 Deno.serve(async (req) => {
@@ -58,7 +62,7 @@ Deno.serve(async (req) => {
 
     // 1) aviso para você; "responder" já vai para quem escreveu
     await enviar(
-      Deno.env.get('CONTATO_PARA')!,
+      USER,
       `[G.W.E.N.] ${assunto} · ${m.nome}`,
       moldura(`${esc(assunto)}`, `
         <p><b style="color:#EDEBE7">${esc(m.nome)}</b> &lt;${esc(m.email)}&gt;</p>
@@ -68,9 +72,7 @@ Deno.serve(async (req) => {
       m.email,
     )
 
-    // 2) confirmação para quem escreveu. Sem domínio verificado (remetente onboarding@resend.dev),
-    //    o Resend só entrega para o dono da conta, então a confirmação fica desligada até ter domínio.
-    if ((Deno.env.get('CONTATO_DE') ?? '').includes('resend.dev')) return new Response('ok (sem confirmação: falta domínio)', { status: 200 })
+    // 2) confirmação para quem escreveu, saindo do mesmo Gmail
     await enviar(
       m.email,
       'Recebemos a sua mensagem · G.W.E.N.',
