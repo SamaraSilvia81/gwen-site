@@ -35,7 +35,7 @@ export default function Casos() {
       <div className="wrap">
         <div className="slot rv">
           <p><b>Seu caso aqui.</b> Quem está no beta pode contar como usa, e o relato aparece nesta seção.</p>
-          <a href="/contato" className="btn btn-ghost"><i className="ph ph-chat-circle-dots"></i>Contar o meu</a>
+          <a href="/contato?assunto=caso" className="btn btn-ghost"><i className="ph ph-chat-circle-dots"></i>Contar o meu</a>
         </div>
       </div>
     </section>

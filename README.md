@@ -122,7 +122,6 @@ Feito por [Samara Silvia](https://github.com/SamaraSilvia81) · [@devs_sam](http
 
 </div>
 
-<picture>
-  <source media="(prefers-color-scheme: light)" srcset="_assets/banners/banner-rodape-claro.webp">
-  <img src="_assets/banners/banner-rodape.webp" alt="G.W.E.N. · rodapé" width="100%">
-</picture>
+<a href="https://github.com/SamaraSilvia81/gwen-app/releases/latest">
+  <img src="_assets/banners/banner-final.webp" alt="Comece pelo próximo projeto: baixe a G.W.E.N. grátis para Windows" width="100%">
+</a>

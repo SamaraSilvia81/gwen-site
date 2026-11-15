@@ -907,3 +907,51 @@ section.s.hist-quem{padding-top:0}
 .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 22%}
 .case-hero-who .av{overflow:hidden}
 .case-hero-who .av img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+/* planos: tabela do que cabe em cada um */
+.ptable{margin-top:clamp(56px,7vw,90px);background:#F6F4F0;border:1px solid var(--paper-rule);border-radius:20px;overflow:hidden}
+.ptable-h{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;padding:clamp(26px,3vw,38px) clamp(22px,3vw,38px) 22px}
+.ptable-h h3{font-family:var(--f-display);font-weight:600;font-size:clamp(24px,2.4vw,32px);letter-spacing:-.025em}
+.ptable-h p{color:var(--paper-muted);font-size:15px;max-width:440px}
+.ptable-scroll{overflow-x:auto}
+.ptable table{width:100%;border-collapse:collapse;min-width:640px}
+.ptable thead th{position:sticky;top:0;background:#F6F4F0;font-family:var(--f-display);font-weight:600;font-size:16px;padding:14px 18px;border-bottom:1px solid var(--paper-ink);text-align:center;width:16%}
+.ptable thead th:first-child{width:auto;text-align:left}
+.ptable thead th.hl{background:var(--paper-ink);color:var(--paper);border-radius:10px 10px 0 0}
+.ptable tbody th{text-align:left;font-weight:400;font-size:15px;padding:13px 18px 13px clamp(22px,3vw,38px);color:var(--paper-ink)}
+.ptable td{text-align:center;padding:13px 18px;font-size:14px}
+.ptable tbody tr{border-bottom:1px solid var(--paper-rule)}
+.ptable td:nth-child(3){background:rgba(10,10,11,.045)}
+.ptable td i{font-size:17px}
+.pt-no{color:#a8a39b}
+.pt-tx{font-family:var(--f-mono);font-size:12px;color:var(--paper-ink);border:1px solid var(--paper-rule);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.pt-g th{font-family:var(--f-mono)!important;font-size:12px!important;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-muted)!important;padding-top:26px!important;background:transparent}
+.pt-g th em{font-style:normal;margin-left:10px;letter-spacing:0;text-transform:none;border:1px dashed var(--paper-rule);border-radius:999px;padding:2px 9px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.prules{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.prules div{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:start;border:1px solid var(--paper-rule);border-radius:var(--r);padding:22px 24px;background:#F6F4F0}
+.prules i{grid-row:span 2;font-size:24px;margin-top:2px}
+.prules b{font-family:var(--f-display);font-weight:600;font-size:17px}
+.prules span{color:var(--paper-muted);font-size:14.5px;margin-top:4px}
+@media (max-width:900px){.prules{grid-template-columns:1fr}}
+/* página de contato */
+.contact-page{position:relative;isolation:isolate;min-height:100vh;padding:170px 0 clamp(90px,10vw,140px);overflow:hidden}
+.contact-bg{position:absolute;inset:0;z-index:-1;background:#000 url(/wallpaper-hero.webp) center/cover no-repeat;filter:blur(3px) brightness(.4)}
+.contact-page::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,10,11,.92),rgba(10,10,11,.6) 60%,rgba(10,10,11,.85)),linear-gradient(180deg,transparent 70%,var(--void))}
+.contact-page .wrap{zoom:.85}
+.contact-page .contact{align-items:center}
+.contact-page .h2{font-size:clamp(48px,6vw,88px)}
+.contact-ways{list-style:none;display:grid;gap:10px;margin-top:34px;max-width:480px}
+.contact-ways li,.contact-ways a{display:flex;align-items:center;gap:14px}
+.contact-ways span{display:block}
+.contact-ways li{border:1px solid var(--rule-2);border-radius:14px;padding:14px 16px;background:rgba(10,10,11,.55);backdrop-filter:blur(10px)}
+.contact-ways a{width:100%;color:inherit}
+.contact-ways i{font-size:22px}
+.contact-ways b{display:block;font-family:var(--f-display);font-weight:600;font-size:16px}
+.contact-ways small{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
+.contact-ways .go{margin-left:auto;font-size:16px;color:var(--muted)}
+.contact-ways li:has(a):hover{border-color:var(--bone)}
+.contact-ways .off{opacity:.55}
+.contact-page .form{background:rgba(18,18,20,.85);backdrop-filter:blur(14px);border-color:var(--rule-2)}
+.form .check{display:flex;gap:10px;align-items:center;font-family:var(--f-body);font-size:14px;color:var(--bone-2)}
+.form .check input{width:16px;height:16px;padding:0;accent-color:#EDEBE7}
+@media (max-width:900px){.contact-page .contact{grid-template-columns:1fr}}

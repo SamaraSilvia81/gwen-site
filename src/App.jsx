@@ -22,6 +22,7 @@ import Final from './sections/Final'
 import Novidades from './pages/Novidades'
 import Historia from './pages/Historia'
 import ToTop from './components/ToTop'
+import ContatoPage from './pages/Contato'
 import { useRelease } from './lib/release'
 import { landingEffects, playIntro } from './lib/effects'
 
@@ -107,7 +108,7 @@ export default function App() {
     <>
       <div className="grain" aria-hidden="true"></div>
       <Defs />
-      {page === '/novidades' ? <Novidades release={release} /> : page === '/historia' ? <Historia release={release} /> : <Landing release={release} />}
+      {page === '/novidades' ? <Novidades release={release} /> : page === '/historia' ? <Historia release={release} /> : page === '/contato' ? <ContatoPage release={release} /> : <Landing release={release} />}
     </>
   )
 }
