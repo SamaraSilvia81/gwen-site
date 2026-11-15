@@ -27,7 +27,7 @@ import { useRelease } from './lib/release'
 import { landingEffects, playIntro } from './lib/effects'
 
 const params = new URLSearchParams(location.search)
-const HERO = ['a', 'b', 'c', 'd'].includes(params.get('hero')) ? params.get('hero') : 'a'
+const HERO = ['a', 'b', 'c', 'd'].includes(params.get('hero')) ? params.get('hero') : 'c'
 // painel do teste A/B: aparece no dev ou com ?ab no endereço
 // enquanto a abertura roda, o hero fica guardado para entrar em cena depois dela
 if (HERO === 'c') document.documentElement.classList.add('intro-run')

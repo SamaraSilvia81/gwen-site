@@ -68,7 +68,9 @@ Deno.serve(async (req) => {
       m.email,
     )
 
-    // 2) confirmação para quem escreveu
+    // 2) confirmação para quem escreveu. Sem domínio verificado (remetente onboarding@resend.dev),
+    //    o Resend só entrega para o dono da conta, então a confirmação fica desligada até ter domínio.
+    if ((Deno.env.get('CONTATO_DE') ?? '').includes('resend.dev')) return new Response('ok (sem confirmação: falta domínio)', { status: 200 })
     await enviar(
       m.email,
       'Recebemos a sua mensagem · G.W.E.N.',
