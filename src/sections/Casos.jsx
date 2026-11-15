@@ -1,3 +1,5 @@
+import Depoimentos from '../components/Depoimentos'
+
 export default function Casos() {
   return (
     <>
@@ -26,6 +28,11 @@ export default function Casos() {
         </ul>
       </div>
     </div>
+    <div className="s-head rv" style={{marginTop:'clamp(80px,10vw,130px)',marginBottom:'clamp(36px,5vw,56px)'}}>
+      <span className="label">$ gwen <b>--depoimentos</b></span>
+      <h2 className="h2">Quem usa<br /><span className="out">conta como é.</span></h2>
+    </div>
+    <Depoimentos />
     <div className="slot rv">
       <p><b>Seu caso aqui.</b> Quem está no beta pode contar como usa, e o relato aparece nesta seção.</p>
       <a href="#contato" className="btn btn-ghost"><i className="ph ph-chat-circle-dots"></i>Contar o meu</a>
