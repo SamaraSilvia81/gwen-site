@@ -720,8 +720,10 @@ section.s.como{padding-top:clamp(100px,12vw,160px)}
 @media (max-width:1000px){.steps.acc{display:grid;grid-template-columns:1fr 1fr;min-height:0}.como .stp{flex-direction:column}.como .stp-body{min-width:0;flex:none}.stp-video{display:none}.como .stp.open{grid-column:1/-1}.como .stp.open .stp-video{display:block;opacity:1;margin-top:20px}}
 @media (max-width:600px){.steps.acc{grid-template-columns:1fr}}
 /* convite claro para abrir os tutoriais */
-.acc-hint{display:inline-flex;align-items:center;gap:8px;margin:-28px 0 22px;font-family:var(--f-mono);font-size:13px;color:var(--paper-muted)}
-.acc-hint i{font-size:17px;color:var(--paper-ink)}
+.como-top{display:flex;justify-content:space-between;align-items:center;gap:40px}
+.acc-hint{display:inline-flex;align-items:center;gap:14px;margin:0 0 clamp(52px,7vw,84px);font-family:var(--f-mono);font-size:15px;line-height:1.5;color:var(--paper-muted)}
+.acc-hint i{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:1px solid var(--paper-ink);font-size:24px;color:var(--paper-ink)}
+@media (max-width:1000px){.como-top{display:block}.acc-hint{margin:-30px 0 24px;font-size:13px}.acc-hint br{display:none}}
 .stp-cta{display:inline-flex;align-items:center;gap:7px;margin-top:22px;font-family:var(--f-display);font-weight:600;font-size:14.5px;color:var(--paper-ink);border:1px solid var(--paper-ink);border-radius:999px;padding:7px 14px 7px 10px;transition:background .25s,color .25s}
 .stp .stp-cta i{font-size:18px;display:inline-block;margin:0}
 .como .stp.open .stp-cta,.como .stp:hover .stp-cta{background:var(--paper-ink);color:var(--paper)}

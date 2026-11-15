@@ -25,12 +25,14 @@ export default function ComoUsar() {
   return (
     <section className="s paper como" id="como-usar">
       <div className="wrap">
+        <div className="como-top">
         <div className="s-head rv">
           <span className="label">$ gwen <b>--como-usar</b></span>
           <h2 className="h2">Do download<br /><span className="out">ao primeiro foco.</span></h2>
           <p>Grátis, sem conta e sem cadastro. Leva menos de dois minutos para o primeiro projeto.</p>
         </div>
-        <p className="acc-hint rv"><i className="ph ph-cursor-click"></i>Passe o mouse ou clique em um passo para ver o tutorial</p>
+        <p className="acc-hint rv"><i className="ph ph-cursor-click"></i><span>Passe o mouse ou clique<br />em um passo para ver o tutorial</span></p>
+        </div>
         <div className={`steps acc${open !== null ? ' has-open' : ''}`} onMouseLeave={() => setOpen(null)}>
           {PASSOS.map((s, i) => (
             <div
