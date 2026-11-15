@@ -2,7 +2,7 @@ export default function PorDentro() {
   return (
     <>
 {/* ============ 4. A FAIXA, POR DENTRO ============ */}
-<section className="s" id="por-dentro" style={{paddingTop:'0'}}>
+<section className="s" id="por-dentro">
   <span className="glow" style={{width:'460px', height:'460px', left:'-160px', top:'30%'}}></span>
   <div className="wrap">
     <div className="s-head rv">

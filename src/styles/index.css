@@ -685,11 +685,13 @@ section[id]{scroll-margin-top:84px}
 @media (max-width:760px){.mf-nums.st-c.n4 .mf-circles,.mf-nums.st-c.n3 .mf-circles{grid-template-columns:repeat(2,1fr)}}
 .apps-strip.in-hero{padding:0}
 .apps-strip.in-hero .strip{margin-top:100px}
-.strip-cta.below{margin:0 0 clamp(60px,7vw,100px)}
+.strip-cta.below{margin:0;height:0;position:relative;z-index:6;align-items:flex-start}
+.strip-cta.below a{transform:translateY(-50%);background:var(--void);border-color:rgba(237,235,231,.28);box-shadow:0 18px 40px -16px rgba(0,0,0,.6)}
+.strip-cta.below a:hover{transform:translateY(-50%) scale(1.03)}
 /* "segunda-feira": um pouco menos de espaço em cima */
 section.s#dia{padding-top:clamp(70px,8.5vw,115px)}
 /* três momentos, agora antes do "começar agora" */
-section.s.tres{padding-bottom:clamp(40px,5vw,70px)}
+section.s.tres{padding:clamp(70px,8vw,110px) 0 clamp(80px,9vw,120px)}
 section.s.tres .story-end{margin-top:0}
 /* painel dos testes recolhível */
 .ab-tog{display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:var(--bone-2);font:inherit;cursor:pointer;padding:6px 8px 6px 0}
@@ -729,3 +731,9 @@ section.s.como{padding-top:clamp(100px,12vw,160px)}
 .como .stp.open .stp-cta,.como .stp:hover .stp-cta{background:var(--paper-ink);color:var(--paper)}
 .steps.acc.has-open .stp:not(.open) .stp-cta{opacity:.0}
 .como .stp:focus-visible{outline:2px solid var(--paper-ink);outline-offset:3px}
+/* recursos: espaço em cima e texto + imagem centralizados na largura da linha */
+section.s.recursos{padding-top:clamp(90px,10vw,130px)}
+.recursos .feat:not(.rev) .feat-v,.recursos .feat.rev .feat-v{margin:0}
+/* três momentos no claro */
+.tres .story-end p .out{-webkit-text-stroke:1.3px rgba(10,10,11,.7)}
+.tres .story-end .map span{color:var(--paper-ink);border-color:var(--paper-rule);background:#F6F4F0}

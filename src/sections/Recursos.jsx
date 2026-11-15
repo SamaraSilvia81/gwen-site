@@ -2,7 +2,7 @@ export default function Recursos() {
   return (
     <>
 {/* ============ 3. RECURSOS 01-04 ============ */}
-<section className="s" id="recursos" style={{paddingTop:'0'}}>
+<section className="s recursos" id="recursos">
   <span className="glow" style={{width:'520px', height:'520px', right:'-180px', top:'180px'}}></span>
   <div className="wrap">
     <div className="s-head rv">
@@ -23,7 +23,7 @@ export default function Recursos() {
         </ul>
       </div>
       <div className="feat-v rv d2">
-        <div className="win"><div className="win-bar"><span className="dots"><i></i><i></i><i></i></span><span>Projetos</span><span></span></div><img src="/prints/projetos.webp" alt="Projetos em cards num tema verde-água" /></div>
+        <div className="win"><div className="win-bar"><span className="dots"><i></i><i></i><i></i></span><span>Projetos</span><span></span></div><img src="/prints/projetos-noir.webp" alt="Projetos em cards no tema Noir, preto e branco" /></div>
         <span className="tag float" style={{left:'-18px', bottom:'48px'}}><i className="ph-bold ph-git-branch"></i>main · 3 alterações</span>
       </div>
     </article>
@@ -41,7 +41,7 @@ export default function Recursos() {
         </ul>
       </div>
       <div className="feat-v rv d2">
-        <div className="win"><div className="win-bar"><span className="dots"><i></i><i></i><i></i></span><span>Relatório</span><span></span></div><img src="/prints/relatorio.webp" alt="Relatório da semana num tema âmbar" /></div>
+        <div className="win"><div className="win-bar"><span className="dots"><i></i><i></i><i></i></span><span>Relatório</span><span></span></div><img src="/prints/relatorio-red.webp" alt="Relatório da semana num tema vermelho" /></div>
         <span className="tag float" style={{right:'-14px', top:'56px'}}><i className="ph-bold ph-timer"></i>20h14 na semana</span>
       </div>
     </article>
