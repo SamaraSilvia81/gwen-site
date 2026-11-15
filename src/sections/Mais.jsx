@@ -23,7 +23,7 @@ export default function Mais() {
           <button className="sw" style={{background:'#2dd4bf'}} aria-label="Tema verde-água"></button>
           <button className="sw" style={{background:'#f5a524'}} aria-label="Tema âmbar"></button>
           <button className="sw" style={{background:'#5b8cff'}} aria-label="Tema azul"></button>
-          <small>mesma tela, quatro temas</small>
+          <small>personalize com as suas cores</small>
         </div>
       </div>
       <div className="card c3 rv d1">
