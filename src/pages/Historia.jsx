@@ -124,7 +124,7 @@ export default function Historia({ release }) {
                 <p>{QUEM_FEZ.texto}</p>
                 <div className="links">
                   <a href={release.downloadUrl} className="btn btn-ink"><i className="ph-fill ph-windows-logo"></i>Baixar a G.W.E.N.</a>
-                  <a href="/contato" className="btn btn-ghost"><i className="ph ph-chat-circle-dots"></i>Falar com ela</a>
+                  <a href="/contato" className="btn btn-ghost"><i className="ph ph-chat-circle-dots"></i>Falar comigo</a>
                 </div>
               </div>
             </div>
