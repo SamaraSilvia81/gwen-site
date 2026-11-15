@@ -1,7 +1,9 @@
 import AppsStrip, { StripCta } from '../components/AppsStrip'
 import Reqs from '../components/Reqs'
 
-export default function Hero({ release, variant, strip = false }) {
+// layout b: o hero fica só com o texto e uma seta; a faixa, o print e o card 2x2 vêm logo depois (ver HeroB em App)
+export default function Hero({ release, variant, strip = false, layout = 'a' }) {
+  const b = layout === 'b'
   return (
     <>
 <header className="hero" id="topo" data-v={variant}>
@@ -20,11 +22,12 @@ export default function Hero({ release, variant, strip = false }) {
         <a href={release.downloadUrl} className="btn btn-solid"><i className="ph-fill ph-windows-logo"></i>Baixar grátis para Windows</a>
         <a href="#como-usar" className="btn btn-ghost"><i className="ph ph-play-circle"></i>Ver como funciona</a>
       </div>
-      <Reqs release={release} className="hero-reqs" />
+      {!b && <Reqs release={release} className="hero-reqs" />}
     </div>
+    {b && <a href="#depois-hero" className="hero-arrow" aria-label="Rolar para baixo"><i className="ph ph-arrow-down"></i></a>}
   </div>
 
-  <div className="z90">
+  {!b && <div className="z90">
     <div className="shot-stage">
       <div className="win" id="heroWin">
         <div className="win-bar"><span className="dots"><i></i><i></i><i></i></span><span>G.W.E.N. / Início</span><span>2 sessões · 1:44:06</span></div>
@@ -33,8 +36,25 @@ export default function Hero({ release, variant, strip = false }) {
     </div>
     <AppsStrip inHero />
     {strip && <StripCta />}
-</div>
+</div>}
 </header>
     </>
+  )
+}
+
+// layout b: depois do hero, a faixa dos apps e, embaixo, o print com o card de requisitos 2x2 ao lado
+export function HeroB({ release, strip = false }) {
+  return (
+    <div className="hero-b" id="depois-hero">
+      <AppsStrip />
+      {strip && <StripCta />}
+      <div className="wrap hero-b-row">
+        <div className="win">
+          <div className="win-bar"><span className="dots"><i></i><i></i><i></i></span><span>G.W.E.N. / Início</span><span>2 sessões · 1:44:06</span></div>
+          <img src="/prints/inicio-roxo.webp" alt="Tela inicial da G.W.E.N. num tema roxo, com duas sessões em paralelo, onde parei, saúde e semana" width="2560" height="1600" />
+        </div>
+        <Reqs release={release} className="grid2" />
+      </div>
+    </div>
   )
 }

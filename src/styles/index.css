@@ -613,7 +613,7 @@ section[id]{scroll-margin-top:84px}
 @media (max-width:600px){.intro-logo svg{width:60px;height:60px}.intro-logo span{font-size:26px}}
 /* entrada do hero depois da abertura C: o fundo acende devagar e o resto chega em sequência */
 .intro-run .nav,.intro-run .hero-bg,.intro-run .hero-dof,.intro-run .hero .blobs,.intro-run .hero-c::before,.intro-run .hero-c::after,
-.intro-run .badge,.intro-run .lede,.intro-run .cta,.intro-run .hero-reqs,.intro-run .shot-stage,.intro-run .strip,.intro-run .strip-cta{opacity:0;animation:none}
+.intro-run .badge,.intro-run .hero-arrow,.intro-run .lede,.intro-run .cta,.intro-run .hero-reqs,.intro-run .shot-stage,.intro-run .strip,.intro-run .strip-cta{opacity:0;animation:none}
 .intro-run .h1 .l>span{animation:none;transform:translateY(105%)}
 @keyframes bgIn{from{opacity:0;filter:blur(24px) brightness(1.8)}to{opacity:1;filter:none}}
 @keyframes softIn{from{opacity:0}to{opacity:1}}
@@ -790,7 +790,24 @@ section.s.mais{padding-top:clamp(100px,12vw,160px)}
 .paper .sw.on{border-color:var(--paper-ink)}
 /* card de requisitos também no hero, logo abaixo dos botões */
 .final .reqs{opacity:1}
-.reqs.hero-reqs{margin:clamp(40px,5vw,60px) auto 0;max-width:1100px;opacity:0;animation:fade .9s .8s var(--ease) forwards}
+.reqs.hero-reqs{margin:calc(clamp(40px,5vw,60px) + 14px) auto 0;max-width:1100px;opacity:0;animation:fade .9s .8s var(--ease) forwards}
 .hero-reqs b{font-size:20px}
 .hero-reqs span{font-size:14.5px}
 .hero-in .hero-reqs{animation:fade .9s 1.6s var(--ease) both}
+/* layout b do hero: seta parada, depois faixa e print com o card 2x2 */
+.hero-arrow{position:absolute;left:50%;bottom:clamp(28px,5vh,56px);transform:translateX(-50%);width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(237,235,231,.4);color:var(--bone);background:rgba(10,10,11,.5);backdrop-filter:blur(10px);z-index:3}
+.hero-arrow i{font-size:22px}
+.hero-arrow:hover{border-color:var(--bone)}
+.hero-in .hero-arrow{animation:softIn 1s 2s var(--ease) both}
+.hero-b{position:relative;z-index:1;padding:clamp(40px,5vw,70px) 0 0}
+.hero-b .apps-strip{padding:0}
+.hero-b .strip-cta{margin-top:26px}
+.hero-b-row{max-width:1500px;display:grid;grid-template-columns:1.7fr 1fr;gap:clamp(24px,3vw,44px);align-items:center;margin-top:clamp(60px,7vw,100px)}
+.hero-b-row .win{transform:none}
+.reqs.grid2{margin:0;max-width:none;grid-template-columns:1fr 1fr;height:100%}
+.reqs.grid2 div{display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:clamp(22px,2.4vw,34px)}
+.reqs.grid2 div:nth-child(2n){border-right:0}
+.reqs.grid2 div:nth-child(n+3){border-bottom:0}
+.reqs.grid2 b{font-size:clamp(18px,1.6vw,24px)}
+.reqs.grid2 span{font-size:14.5px}
+@media (max-width:1000px){.hero-b-row{grid-template-columns:1fr}}
