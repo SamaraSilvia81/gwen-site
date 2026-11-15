@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="_assets/prints/landing-hero.webp" alt="Hero do site da G.W.E.N.: Seu trabalho em um clique. Sua pausa, a sério." width="100%">
+  <img src="_assets/banners/banner-final.webp" alt="G.W.E.N.: comece pelo próximo projeto. Baixe grátis para Windows" width="100%">
 </div>
 
 <div align="center">
@@ -122,6 +122,7 @@ Feito por [Samara Silvia](https://github.com/SamaraSilvia81) · [@devs_sam](http
 
 </div>
 
-<a href="https://github.com/SamaraSilvia81/gwen-app/releases/latest">
-  <img src="_assets/banners/banner-final.webp" alt="Comece pelo próximo projeto: baixe a G.W.E.N. grátis para Windows" width="100%">
-</a>
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="_assets/banners/banner-rodape-claro.webp">
+  <img src="_assets/banners/banner-rodape.webp" alt="G.W.E.N. · rodapé" width="100%">
+</picture>
