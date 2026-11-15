@@ -1,4 +1,6 @@
-export default function Hero({ release, variant }) {
+import AppsStrip from '../components/AppsStrip'
+
+export default function Hero({ release, variant, strip = false }) {
   return (
     <>
 <header className="hero" id="topo" data-v={variant}>
@@ -27,14 +29,8 @@ export default function Hero({ release, variant }) {
         <img src="/prints/inicio-roxo.webp" alt="Tela inicial da G.W.E.N. num tema roxo, com duas sessões em paralelo, onde parei, saúde e semana" width="2560" height="1600" />
       </div>
     </div>
-    <div className="strip" aria-label="Apps que a G.W.E.N. abre junto com o projeto">
-      <div className="strip-t">
-        <span><i className="ph ph-code"></i>VS Code</span><span><i className="ph ph-terminal-window"></i>Git Bash</span><span><i className="ph ph-terminal"></i>Windows Terminal</span><span><i className="ph ph-folder-open"></i>Explorer</span><span><i className="ph ph-discord-logo"></i>Discord</span><span><i className="ph ph-whatsapp-logo"></i>WhatsApp</span><span><i className="ph ph-spotify-logo"></i>Spotify</span><span><i className="ph ph-notion-logo"></i>Notion</span><span><i className="ph ph-figma-logo"></i>Figma</span><span><i className="ph ph-github-logo"></i>GitHub</span>
-        <span><i className="ph ph-code"></i>VS Code</span><span><i className="ph ph-terminal-window"></i>Git Bash</span><span><i className="ph ph-terminal"></i>Windows Terminal</span><span><i className="ph ph-folder-open"></i>Explorer</span><span><i className="ph ph-discord-logo"></i>Discord</span><span><i className="ph ph-whatsapp-logo"></i>WhatsApp</span><span><i className="ph ph-spotify-logo"></i>Spotify</span><span><i className="ph ph-notion-logo"></i>Notion</span><span><i className="ph ph-figma-logo"></i>Figma</span><span><i className="ph ph-github-logo"></i>GitHub</span>
-      </div>
-    </div>
-    <div className="strip-cta"><a href="#por-dentro"><i className="ph ph-arrow-down"></i>Tudo isso abre junto com o seu projeto. Veja como</a></div>
-  </div>
+    {strip && <AppsStrip inHero />}
+</div>
 </header>
     </>
   )

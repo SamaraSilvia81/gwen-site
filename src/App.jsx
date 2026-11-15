@@ -9,6 +9,7 @@ import Dia from './sections/Dia'
 import ComoUsar from './sections/ComoUsar'
 import Recursos from './sections/Recursos'
 import PorDentro from './sections/PorDentro'
+import AppsStrip from './components/AppsStrip'
 import Mais from './sections/Mais'
 import ParaVoce from './sections/ParaVoce'
 import Privacidade from './sections/Privacidade'
@@ -28,6 +29,10 @@ const HERO = ['a', 'b', 'c', 'd'].includes(params.get('hero')) ? params.get('her
 if (HERO === 'c') document.documentElement.classList.add('intro-run')
 // teste dos números do manifesto: a = frase e depois números, b = números primeiro
 const MF = params.get('mf') === 'b' ? 'b' : 'a'
+// estilo dos números: a = círculos, c = só os números grandes
+const NUMS = params.get('nums') === 'c' ? 'c' : 'a'
+// teste da faixa dos apps: a = no hero, logo abaixo da janela; b = mais abaixo, antes do "por dentro"
+const STRIP = params.get('strip') === 'a' ? 'a' : 'b'
 const SHOW_AB = import.meta.env.DEV || params.has('ab')
 
 function Landing({ release }) {
@@ -39,12 +44,13 @@ function Landing({ release }) {
       {intro && <Intro />}
       <Nav release={release} />
       {/* C é só a abertura: ao terminar, a página segue no visual do D */}
-      <Hero release={release} variant={HERO === 'c' ? 'd' : HERO} />
+      <Hero release={release} variant={HERO === 'c' ? 'd' : HERO} strip={STRIP === 'a'} />
       <main className="z90">
-        <Manifesto order={MF} />
+        <Manifesto order={MF} style={NUMS} />
         <Dia />
         <ComoUsar />
         <Recursos />
+        {STRIP === 'b' && <AppsStrip />}
         <PorDentro />
         <Mais />
         <ParaVoce />
@@ -62,8 +68,10 @@ function Landing({ release }) {
       </a>
       {SHOW_AB && (
         <div className="ab">
-          hero {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={`?hero=${v}&mf=${MF}${params.has('ab') ? '&ab' : ''}`} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}
-          <span className="ab-sep">números</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${v}${params.has('ab') ? '&ab' : ''}#manifesto`} className={MF === v ? 'on' : ''} title={v === 'a' ? 'frase antes dos números' : 'números antes da frase'}>{v.toUpperCase()}</a>)}
+          hero {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={`?hero=${v}&mf=${MF}&nums=${NUMS}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}`} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}
+          <span className="ab-sep">ordem</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${v}&nums=${NUMS}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}#manifesto`} className={MF === v ? 'on' : ''} title={v === 'a' ? 'frase antes dos números' : 'números antes da frase'}>{v.toUpperCase()}</a>)}
+          <span className="ab-sep">números</span> {['a', 'c'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${MF}&nums=${v}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}#manifesto`} className={NUMS === v ? 'on' : ''} title={v === 'a' ? 'em círculos' : 'só os números'}>{v.toUpperCase()}</a>)}
+          <span className="ab-sep">faixa</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${MF}&nums=${NUMS}&strip=${v}${params.has('ab') ? '&ab' : ''}#${v === 'a' ? 'topo' : 'por-dentro'}`} className={STRIP === v ? 'on' : ''} title={v === 'a' ? 'faixa no hero' : 'faixa mais abaixo'}>{v.toUpperCase()}</a>)}
         </div>
       )}
     </>

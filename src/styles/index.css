@@ -646,11 +646,10 @@ section[id]{scroll-margin-top:84px}
 .mf-here::after{animation-delay:1.2s}
 @keyframes here{from{transform:scale(1);opacity:.8}to{transform:scale(3.2);opacity:0}}
 /* pílulas: uma com o wallpaper da marca, uma clara e uma escura */
-.pill{display:inline-block;width:2.3em;height:.82em;border-radius:999px;vertical-align:-.04em;margin:0 .06em;transition:width .6s var(--ease)}
+.pill{display:inline-block;width:2.3em;height:.82em;border-radius:999px;vertical-align:-.04em;margin:0 .06em}
 .pill.img{background:#000 url(/wallpaper-hero.webp) 40% 45%/260% auto no-repeat;box-shadow:0 0 0 1px rgba(255,255,255,.14) inset}
 .pill.light{background:var(--bone)}
 .pill.dark{background:#0a0a0b;box-shadow:0 0 0 1.5px rgba(237,235,231,.5) inset}
-.mf.on .mf-t:hover .pill{width:2.7em}
 .mf-note{max-width:400px;margin:clamp(30px,3vw,44px) 0 0 auto;color:var(--muted);font-size:18px;line-height:1.6;opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .mf.on .mf-note{opacity:1;transform:none}
 /* números em círculos */
@@ -670,3 +669,19 @@ section[id]{scroll-margin-top:84px}
 @media (max-width:1100px){.mf-nums{grid-template-columns:1fr}.mf-circles{justify-content:flex-start;flex-wrap:wrap}}
 @media (max-width:600px){.mf-circles{display:grid;grid-template-columns:1fr 1fr}.mf-c{width:100%}.mf-note{margin-left:0}}
 @media (prefers-reduced-motion:reduce){.mf-p,.mf-note,.mf-c{transition:none;opacity:1;filter:none;transform:none}}
+/* faixa dos apps, agora mais abaixo na página */
+.apps-strip{position:relative;z-index:1;padding:0 0 clamp(70px,8vw,110px)}
+.apps-strip .strip{margin-top:0}
+/* números, versão C: só os números grandes numa linha, sem círculo */
+.mf-nums.st-c{grid-template-columns:1fr;border-bottom:0;padding-top:clamp(34px,4vw,48px)}
+.mf-nums.st-c .mf-nums-h{display:none}
+.mf-nums.st-c .mf-circles{display:grid;justify-content:stretch;gap:clamp(24px,4vw,60px)}
+.mf-nums.st-c.n4 .mf-circles{grid-template-columns:repeat(4,1fr)}.mf-nums.st-c.n3 .mf-circles{grid-template-columns:repeat(3,1fr)}.mf-nums.st-c.n2 .mf-circles{grid-template-columns:repeat(2,1fr)}
+.mf-nums.st-c .mf-c{width:auto;aspect-ratio:auto;border:0;border-radius:0;background:none;color:var(--bone);align-items:flex-start;text-align:left;padding:0;transform:translateY(18px)}
+.mf-nums.st-c.on .mf-c{transform:none}
+.mf-nums.st-c .mf-c b{font-size:clamp(52px,6.6vw,104px);line-height:.9;letter-spacing:-.05em}
+.mf-nums.st-c .mf-c span{margin-top:14px;font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.mf-nums.st-c .mf-c:hover{background:none}
+@media (max-width:760px){.mf-nums.st-c.n4 .mf-circles,.mf-nums.st-c.n3 .mf-circles{grid-template-columns:repeat(2,1fr)}}
+.apps-strip.in-hero{padding:0}
+.apps-strip.in-hero .strip{margin-top:100px}

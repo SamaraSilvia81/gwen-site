@@ -69,7 +69,7 @@ function Frase() {
   )
 }
 
-function Numeros() {
+function Numeros({ style }) {
   const { downloads, versions } = useStats()
   const [ref, seen] = useInView(0.3)
   // número em zero não entra: não passa confiança
@@ -77,10 +77,10 @@ function Numeros() {
     { n: CREATED, label: 'ano de criação', plain: true },
     downloads > 0 && { n: downloads, suffix: '+', label: 'downloads' },
     versions > 0 && { n: versions, label: versions === 1 ? 'versão lançada' : 'versões lançadas' },
-    { word: 'grátis', label: 'para sempre', fill: true },
+    { word: 'grátis', label: 'plano gratuito', fill: true },
   ].filter(Boolean)
   return (
-    <div ref={ref} className={`mf-nums${seen ? ' on' : ''}`}>
+    <div ref={ref} className={`mf-nums st-${style}${seen ? ' on' : ''} n${items.length}`}>
       <div className="mf-nums-h"><span className="label">$ gwen <b>--em-numeros</b></span><p>G.W.E.N.<br />em números</p></div>
       <div className="mf-circles">
         {items.map((it, i) => (
@@ -94,11 +94,11 @@ function Numeros() {
   )
 }
 
-export default function Manifesto({ order = 'a' }) {
+export default function Manifesto({ order = 'a', style = 'a' }) {
   return (
     <section className={`s manifesto o-${order}`} id="manifesto">
       <div className="wrap">
-        {order === 'b' ? <><Numeros /><Frase /></> : <><Frase /><Numeros /></>}
+        {order === 'b' ? <><Numeros style={style} /><Frase /></> : <><Frase /><Numeros style={style} /></>}
       </div>
     </section>
   )
