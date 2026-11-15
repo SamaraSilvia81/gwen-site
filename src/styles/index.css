@@ -699,7 +699,7 @@ section.s.tres .story-end{margin-top:0}
 /* do download ao primeiro foco: seção clara, cards largos que abrem com o mouse */
 section.s.como{padding-top:clamp(100px,12vw,160px)}
 .steps.acc{display:flex;gap:18px;min-height:460px}
-.como .stp{flex:1 1 0;min-width:0;display:flex;gap:0;background:#F6F4F0;border:1px solid var(--paper-rule);border-radius:var(--r);padding:34px 32px 36px;color:var(--paper-ink);overflow:hidden;cursor:default;transition:flex-grow .7s var(--ease),border-color .3s,box-shadow .3s}
+.como .stp{flex:1 1 0;min-width:0;display:flex;gap:0;cursor:pointer;background:#F6F4F0;border:1px solid var(--paper-rule);border-radius:var(--r);padding:34px 32px 36px;color:var(--paper-ink);overflow:hidden;transition:flex-grow .7s var(--ease),border-color .3s,box-shadow .3s}
 .como .wrap{max-width:1760px}
 .como .stp-body{flex:1 1 auto;min-width:0}
 .como .stp p,.como .stp .chips{transition:opacity .35s}
@@ -710,12 +710,20 @@ section.s.como{padding-top:clamp(100px,12vw,160px)}
 .stp-video video{width:100%;height:100%;object-fit:cover;display:block}
 .stp-video-ph{height:100%;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(237,235,231,.55);font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;white-space:nowrap}
 .stp-video-ph i{font-size:40px;color:rgba(237,235,231,.8)}
-@media (hover:hover) and (min-width:1001px){
-  .steps.acc:hover .stp,.steps.acc:focus-within .stp{flex-grow:.7}
-  .steps.acc:hover .stp:not(:hover) p,.steps.acc:hover .stp:not(:hover) .chips{opacity:0}
-  .steps.acc .stp:hover .stp-body,.steps.acc .stp:focus .stp-body{flex:0 0 340px}
-  .steps.acc .stp:hover,.steps.acc .stp:focus{flex-grow:3.2;border-color:var(--paper-ink);box-shadow:0 30px 60px -30px rgba(10,10,11,.35)}
-  .steps.acc .stp:hover .stp-video,.steps.acc .stp:focus .stp-video{flex-basis:48%;opacity:1;margin-left:28px;transition-delay:.12s}
+@media (min-width:1001px){
+  .steps.acc.has-open .stp{flex-grow:.7}
+  .steps.acc.has-open .stp:not(.open) p,.steps.acc.has-open .stp:not(.open) .chips{opacity:0}
+  .steps.acc .stp.open .stp-body{flex:0 0 340px}
+  .steps.acc .stp.open{flex-grow:3.2;border-color:var(--paper-ink);box-shadow:0 30px 60px -30px rgba(10,10,11,.35)}
+  .steps.acc .stp.open .stp-video{flex-basis:48%;opacity:1;margin-left:28px;transition-delay:.12s}
 }
-@media (max-width:1000px){.steps.acc{display:grid;grid-template-columns:1fr 1fr;min-height:0}.como .stp{flex-direction:column}.como .stp-body{min-width:0;flex:none}.stp-video{display:none}}
+@media (max-width:1000px){.steps.acc{display:grid;grid-template-columns:1fr 1fr;min-height:0}.como .stp{flex-direction:column}.como .stp-body{min-width:0;flex:none}.stp-video{display:none}.como .stp.open{grid-column:1/-1}.como .stp.open .stp-video{display:block;opacity:1;margin-top:20px}}
 @media (max-width:600px){.steps.acc{grid-template-columns:1fr}}
+/* convite claro para abrir os tutoriais */
+.acc-hint{display:inline-flex;align-items:center;gap:8px;margin:-28px 0 22px;font-family:var(--f-mono);font-size:13px;color:var(--paper-muted)}
+.acc-hint i{font-size:17px;color:var(--paper-ink)}
+.stp-cta{display:inline-flex;align-items:center;gap:7px;margin-top:22px;font-family:var(--f-display);font-weight:600;font-size:14.5px;color:var(--paper-ink);border:1px solid var(--paper-ink);border-radius:999px;padding:7px 14px 7px 10px;transition:background .25s,color .25s}
+.stp .stp-cta i{font-size:18px;display:inline-block;margin:0}
+.como .stp.open .stp-cta,.como .stp:hover .stp-cta{background:var(--paper-ink);color:var(--paper)}
+.steps.acc.has-open .stp:not(.open) .stp-cta{opacity:.0}
+.como .stp:focus-visible{outline:2px solid var(--paper-ink);outline-offset:3px}
