@@ -15,10 +15,6 @@ export default function Dia() {
       <div className="beat rv"><time>15:40</time><p>Faz quatro horas que não levanta da cadeira. <em>Nem um copo de água.</em></p></div>
       <div className="beat rv"><time>19:30</time><p>Trabalhou o dia inteiro em três projetos. Quanto em cada um? <em>Não sabe dizer.</em></p></div>
     </div>
-    <div className="story-end rv">
-      <p>A G.W.E.N. existe<br /><span className="out">para esses três momentos.</span></p>
-      <div className="map"><span><i className="ph ph-lightning"></i>abrir tudo de uma vez</span><span><i className="ph ph-coffee"></i>lembrar de parar</span><span><i className="ph ph-timer"></i>saber para onde o dia foi</span></div>
-    </div>
   </div>
 </section>
 

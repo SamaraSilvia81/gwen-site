@@ -9,6 +9,7 @@ import Dia from './sections/Dia'
 import ComoUsar from './sections/ComoUsar'
 import Recursos from './sections/Recursos'
 import PorDentro from './sections/PorDentro'
+import TresMomentos from './sections/TresMomentos'
 import { StripCta } from './components/AppsStrip'
 import Mais from './sections/Mais'
 import ParaVoce from './sections/ParaVoce'
@@ -37,6 +38,9 @@ const SHOW_AB = import.meta.env.DEV || params.has('ab')
 
 function Landing({ release }) {
   const [intro, setIntro] = useState(HERO === 'c')
+  // painel dos testes recolhível; lembra se estava aberto
+  const [abOpen, setAbOpen] = useState(() => { try { return localStorage.getItem('gwen.ab') !== '0' } catch { return true } })
+  useEffect(() => { try { localStorage.setItem('gwen.ab', abOpen ? '1' : '0') } catch { /* sem storage */ } }, [abOpen])
   useEffect(() => landingEffects(), [])
   useEffect(() => (intro ? playIntro(() => setIntro(false)) : undefined), [intro])
   return (
@@ -50,6 +54,7 @@ function Landing({ release }) {
         <Dia />
         <ComoUsar />
         <Recursos />
+        <TresMomentos />
         {STRIP === 'b' && <StripCta below />}
         <PorDentro />
         <Mais />
@@ -67,11 +72,14 @@ function Landing({ release }) {
         <i className="ph-bold ph-arrow-up"></i>
       </a>
       {SHOW_AB && (
-        <div className="ab">
+        <div className={`ab${abOpen ? '' : ' closed'}`}>
+          <button className="ab-tog" onClick={() => setAbOpen(!abOpen)} aria-label={abOpen ? 'Recolher testes' : 'Abrir testes'}><i className={`ph ${abOpen ? 'ph-caret-left' : 'ph-flask'}`}></i>{!abOpen && 'testes'}</button>
+          <span className="ab-in">
           hero {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={`?hero=${v}&mf=${MF}&nums=${NUMS}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}`} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}
           <span className="ab-sep">ordem</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${v}&nums=${NUMS}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}#manifesto`} className={MF === v ? 'on' : ''} title={v === 'a' ? 'frase antes dos números' : 'números antes da frase'}>{v.toUpperCase()}</a>)}
           <span className="ab-sep">números</span> {['a', 'c'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${MF}&nums=${v}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}#manifesto`} className={NUMS === v ? 'on' : ''} title={v === 'a' ? 'em círculos' : 'só os números'}>{v.toUpperCase()}</a>)}
           <span className="ab-sep">botão</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${MF}&nums=${NUMS}&strip=${v}${params.has('ab') ? '&ab' : ''}#${v === 'a' ? 'topo' : 'por-dentro'}`} className={STRIP === v ? 'on' : ''} title={v === 'a' ? 'botão colado na faixa' : 'botão mais abaixo'}>{v.toUpperCase()}</a>)}
+          </span>
         </div>
       )}
     </>
