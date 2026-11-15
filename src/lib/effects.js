@@ -102,18 +102,24 @@ function clickSound() {
     src.connect(g).connect(a.destination); src.start()
   } catch { /* sem áudio */ }
 }
-// tecla: um estalo curto de ruído filtrado, com timbre um pouco diferente a cada letra
-function keySound(space) {
+// digitação: o trecho de 0:02 a 0:08 do áudio que a Samara escolheu (public/sounds/typing.mp3), tocado inteiro, sem cortes.
+// cada número é o instante (em segundos) de uma tecla dentro desse trecho: as letras aparecem exatamente nesses instantes
+const KEYS = [0.426,0.520,0.660,0.749,0.799,0.881,1.123,1.216,1.305,1.369,1.548,1.695,1.811,1.962,2.118,2.205,2.336,2.396,2.464,2.543,2.599,2.716,2.803,2.903,3.058,3.148,3.221,3.371,3.431,3.524,3.596,3.664,3.877,3.958,4.060,4.154,4.253,4.323,4.432,4.507,4.600,4.739,4.800,4.893,5.024,5.162,5.251,5.343,5.440,5.503,5.575,5.685,5.776,5.878,5.958]
+let typeBuf
+function loadTyping() {
   try {
-    const a = audio(), t = a.currentTime, len = 0.045
-    const buf = a.createBuffer(1, Math.ceil(a.sampleRate * len), a.sampleRate), d = buf.getChannelData(0)
-    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 6)
-    const src = a.createBufferSource(), bp = a.createBiquadFilter(), g = a.createGain()
-    src.buffer = buf
-    bp.type = 'bandpass'; bp.frequency.value = (space ? 900 : 1900) + Math.random() * 900; bp.Q.value = 1.4
-    g.gain.setValueAtTime(space ? 0.32 : 0.24 + Math.random() * 0.08, t)
-    src.connect(bp).connect(g).connect(a.destination); src.start(t)
-  } catch { /* sem áudio */ }
+    return fetch('/sounds/typing.mp3').then((r) => r.arrayBuffer()).then((b) => audio().decodeAudioData(b)).then((buf) => { typeBuf = buf }).catch(() => {})
+  } catch { return Promise.resolve() }
+}
+// toca o trecho e devolve uma função que o encerra com um fade curto
+function playTyping() {
+  try {
+    if (!typeBuf) return () => {}
+    const a = audio(), src = a.createBufferSource(), g = a.createGain()
+    src.buffer = typeBuf; g.gain.value = 0.85
+    src.connect(g).connect(a.destination); src.start()
+    return () => { try { const t = a.currentTime; g.gain.setTargetAtTime(0, t, 0.05); src.stop(t + 0.3) } catch { /* já parou */ } }
+  } catch { return () => {} }
 }
 
 /** Abertura do hero C: digita, o cursor entra, clica e o círculo branco revela a página */
@@ -122,20 +128,39 @@ export function playIntro(onDone) {
   const cur = document.getElementById('cursor'), rip = document.getElementById('ripple'), logo = document.getElementById('introLogo')
   if (!intro) return () => {}
   document.body.style.overflow = 'hidden'
-  loadClick(); addEventListener('pointerdown', unlock, { once: true }); addEventListener('keydown', unlock, { once: true })
+  loadClick(); const typingReady = loadTyping(); addEventListener('pointerdown', unlock, { once: true }); addEventListener('keydown', unlock, { once: true })
   const wait = (ms) => new Promise((r) => setTimeout(r, ms))
   let done = false
-  const finish = () => { if (done) return; done = true; intro.classList.add('gone'); document.body.style.overflow = ''; setTimeout(onDone, 750) }
+  const finish = () => {
+    if (done) return; done = true
+    const root = document.documentElement
+    root.classList.remove('intro-run'); root.classList.add('hero-in')
+    intro.classList.add('gone'); document.body.style.overflow = ''
+    setTimeout(onDone, 1200)
+  }
   document.getElementById('introSkip').onclick = finish
-  const type = async (txt, cls) => {
-    const span = document.createElement('span'); if (cls) span.className = cls
-    T.insertBefore(span, T.querySelector('.caret'))
-    for (const ch of txt) { if (done) return; span.textContent += ch; keySound(ch === ' '); await wait(ch === ' ' ? 40 : 55 + Math.random() * 40) }
+  // cada letra entra no instante da tecla correspondente no áudio, então som e texto andam juntos
+  const typeSynced = async (lines) => {
+    const caret = T.querySelector('.caret'), t0 = performance.now()
+    const stop = playTyping()
+    let k = 0
+    for (const [txt, cls] of lines) {
+      if (k) T.insertBefore(document.createElement('br'), caret)
+      const span = document.createElement('span'); if (cls) span.className = cls
+      T.insertBefore(span, caret)
+      for (const ch of txt) {
+        const at = KEYS[Math.min(k, KEYS.length - 1)] * 1000
+        const dt = at - (performance.now() - t0); if (dt > 0) await wait(dt)
+        if (done) { stop(); return }
+        span.textContent += ch; k++
+      }
+    }
+    await wait(140); stop()
   }
   ;(async () => {
     T.innerHTML = '<span class="caret"></span>'
-    await wait(500); await type('Seu trabalho em um clique.'); T.insertBefore(document.createElement('br'), T.querySelector('.caret'))
-    await wait(250); await type('Sua pausa, a sério.', 'o'); await wait(500)
+    await Promise.race([typingReady, wait(1200)]); await wait(300)
+    await typeSynced([['Seu trabalho em um clique.'], ['Sua pausa, a sério.', 'o']]); await wait(500)
     if (done) return
     T.querySelector('.caret')?.remove()
     const r = T.getBoundingClientRect(), tx = innerWidth / 2 + 40, ty = r.bottom + 70
@@ -148,5 +173,5 @@ export function playIntro(onDone) {
     await wait(650); logo.classList.add('on'); cur.style.opacity = 0
     await wait(1100); finish()
   })()
-  return () => { done = true; document.body.style.overflow = '' }
+  return () => { done = true; document.body.style.overflow = ''; document.documentElement.classList.remove('intro-run') }
 }

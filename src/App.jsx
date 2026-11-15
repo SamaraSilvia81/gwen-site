@@ -23,6 +23,8 @@ import { landingEffects, playIntro } from './lib/effects'
 const params = new URLSearchParams(location.search)
 const HERO = ['a', 'b', 'c', 'd'].includes(params.get('hero')) ? params.get('hero') : 'a'
 // painel do teste A/B: aparece no dev ou com ?ab no endereço
+// enquanto a abertura roda, o hero fica guardado para entrar em cena depois dela
+if (HERO === 'c') document.documentElement.classList.add('intro-run')
 const SHOW_AB = import.meta.env.DEV || params.has('ab')
 
 function Landing({ release }) {
