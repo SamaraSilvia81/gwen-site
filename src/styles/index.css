@@ -732,7 +732,7 @@ section.s.como{padding-top:clamp(100px,12vw,160px)}
 .steps.acc.has-open .stp:not(.open) .stp-cta{opacity:.0}
 .como .stp:focus-visible{outline:2px solid var(--paper-ink);outline-offset:3px}
 /* recursos: espaço em cima e texto + imagem centralizados na largura da linha */
-section.s.recursos{padding-top:clamp(90px,10vw,130px)}
+section.s.recursos{padding-top:clamp(100px,12vw,160px)}
 .recursos .feat:not(.rev) .feat-v,.recursos .feat.rev .feat-v{margin:0}
 /* três momentos no claro */
 .tres .story-end p .out{-webkit-text-stroke:1.3px rgba(10,10,11,.7)}
