@@ -583,3 +583,22 @@ section[id]{scroll-margin-top:84px}
 /* logo na mesma cápsula de vidro dos links: as três peças da topbar ficam com o mesmo peso */
 .nav-in .logo{padding:7px 18px 7px 9px;border-radius:999px;background:rgba(10,10,11,.62);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);transition:background .3s,border-color .3s}
 .nav.solid .nav-in .logo{background:transparent;border-color:transparent;backdrop-filter:none}
+/* hero D: laterais desfocadas como foco de câmera (o desfoque cresce em 3 camadas até a borda) + blobs de luz */
+.hero-dof{display:none;position:absolute;inset:0;z-index:-2;pointer-events:none}
+.hero-dof i{position:absolute;inset:0}
+.hero-dof i:nth-child(1){backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 22%,transparent 34%,transparent 66%,#000 78%,#000 100%);mask-image:linear-gradient(90deg,#000 0%,#000 22%,transparent 34%,transparent 66%,#000 78%,#000 100%)}
+.hero-dof i:nth-child(2){backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 12%,transparent 24%,transparent 76%,#000 88%,#000 100%);mask-image:linear-gradient(90deg,#000 0%,#000 12%,transparent 24%,transparent 76%,#000 88%,#000 100%)}
+.hero-dof i:nth-child(3){backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 13%,transparent 87%,#000 100%);mask-image:linear-gradient(90deg,#000 0%,transparent 13%,transparent 87%,#000 100%)}
+.hero[data-v="d"] .hero-dof{display:block}
+/* blobs por cima do wallpaper: sem fundo preto, sem grade, só luz nas laterais */
+.hero[data-v="d"] .blobs{display:block;background:transparent;z-index:-1;mix-blend-mode:screen}
+.hero[data-v="d"] .blobs .lines{display:none}
+.hero[data-v="d"] .blob.b1{opacity:.16}
+.hero[data-v="d"] .blob.b2{opacity:.13}
+.hero[data-v="d"] .blob.b3{left:auto;right:58%;bottom:-120px;opacity:.1}
+@media (max-width:760px){.hero-dof i:nth-child(1){-webkit-mask-image:linear-gradient(90deg,#000,transparent 22%,transparent 78%,#000);mask-image:linear-gradient(90deg,#000,transparent 22%,transparent 78%,#000)}
+  .hero-dof i:nth-child(2){-webkit-mask-image:linear-gradient(90deg,#000,transparent 14%,transparent 86%,#000);mask-image:linear-gradient(90deg,#000,transparent 14%,transparent 86%,#000)}
+  .hero-dof i:nth-child(3){-webkit-mask-image:linear-gradient(90deg,#000,transparent 7%,transparent 93%,#000);mask-image:linear-gradient(90deg,#000,transparent 7%,transparent 93%,#000)}}
