@@ -33,7 +33,6 @@ export default function Nav({ release }) {
           {LINKS.map(([label, href]) => <li key={href}><a href={href}>{label}</a></li>)}
         </ul>
         <div className="nav-r">
-          <span className="ver">{release.tag}</span>
           <a href="/#baixar" className="btn btn-solid"><i className="ph-bold ph-download-simple"></i>Baixar grátis</a>
           <button className="nav-burger" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="nav-menu" aria-label={open ? 'Fechar menu' : 'Abrir menu'}>
             <i className={`ph-bold ${open ? 'ph-x' : 'ph-list'}`}></i>

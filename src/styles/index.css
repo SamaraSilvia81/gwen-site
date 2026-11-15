@@ -579,3 +579,7 @@ section[id]{scroll-margin-top:84px}
 .q-tags span{font-family:var(--f-mono);font-size:11.5px;border:1px solid var(--rule-2);border-radius:999px;padding:3px 9px;color:var(--bone-2)}
 .q-ex{position:absolute;top:18px;right:18px;font-family:var(--f-mono);font-size:10.5px;color:#f5a524;border:1px dashed rgba(245,165,36,.5);border-radius:999px;padding:2px 8px}
 .nav-in .logo span{text-shadow:0 1px 14px rgba(0,0,0,.75)}
+.nav-in .logo svg{width:32px;height:32px}.nav-in .logo span{font-size:17px}
+/* logo na mesma cápsula de vidro dos links: as três peças da topbar ficam com o mesmo peso */
+.nav-in .logo{padding:7px 18px 7px 9px;border-radius:999px;background:rgba(10,10,11,.62);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);transition:background .3s,border-color .3s}
+.nav.solid .nav-in .logo{background:transparent;border-color:transparent;backdrop-filter:none}
