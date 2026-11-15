@@ -788,10 +788,9 @@ section.s.mais{padding-top:clamp(100px,12vw,160px)}
 .paper .orbit{border-color:rgba(10,10,11,.25)}
 .paper .orbit i{background:var(--paper-ink);color:var(--paper)}
 .paper .sw.on{border-color:var(--paper-ink)}
-/* requisitos resumidos no hero (a versão completa fica no fim da página) */
-.hero-reqs{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 22px;margin-top:28px;font-family:var(--f-mono);font-size:15px;color:var(--bone-2);text-shadow:0 2px 14px rgba(0,0,0,.8);opacity:0;animation:fade .9s .8s var(--ease) forwards}
-.hero-reqs span{display:inline-flex;align-items:center;gap:8px}
-.hero-reqs i{font-size:17px}
-.hero-reqs a{color:var(--bone);border-bottom:1px solid rgba(237,235,231,.5)}
-.hero-reqs a:hover{border-color:var(--bone)}
+/* card de requisitos também no hero, logo abaixo dos botões */
+.final .reqs{opacity:1}
+.reqs.hero-reqs{margin:clamp(40px,5vw,60px) auto 0;max-width:1100px;opacity:0;animation:fade .9s .8s var(--ease) forwards}
+.hero-reqs b{font-size:20px}
+.hero-reqs span{font-size:14.5px}
 .hero-in .hero-reqs{animation:fade .9s 1.6s var(--ease) both}

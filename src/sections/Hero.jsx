@@ -1,4 +1,5 @@
 import AppsStrip, { StripCta } from '../components/AppsStrip'
+import Reqs from '../components/Reqs'
 
 export default function Hero({ release, variant, strip = false }) {
   return (
@@ -19,7 +20,7 @@ export default function Hero({ release, variant, strip = false }) {
         <a href={release.downloadUrl} className="btn btn-solid"><i className="ph-fill ph-windows-logo"></i>Baixar grátis para Windows</a>
         <a href="#como-usar" className="btn btn-ghost"><i className="ph ph-play-circle"></i>Ver como funciona</a>
       </div>
-      <p className="hero-reqs"><span><i className="ph ph-windows-logo"></i>Windows 10 ou 11, 64 bits</span><span><i className="ph ph-download-simple"></i>{release.sizeLabel}</span><span><i className="ph ph-gift"></i>grátis, sem cadastro</span><a href="#baixar">requisitos completos</a></p>
+      <Reqs release={release} className="hero-reqs" />
     </div>
   </div>
 
