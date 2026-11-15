@@ -3,7 +3,7 @@ import Defs from './components/Defs'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Intro from './components/Intro'
-import Hero, { HeroB } from './sections/Hero'
+import Hero, { StripBlock, ShotReqs, ShotText } from './sections/Hero'
 import Manifesto from './sections/Manifesto'
 import Dia from './sections/Dia'
 import ComoUsar from './sections/ComoUsar'
@@ -34,8 +34,12 @@ const MF = params.get('mf') === 'b' ? 'b' : 'a'
 const NUMS = params.get('nums') === 'c' ? 'c' : 'a'
 // teste do botão "Tudo isso abre junto com o seu projeto": a = no hero, colado na faixa; b = mais abaixo, antes do "por dentro"
 const STRIP = params.get('strip') === 'a' ? 'a' : 'b'
-// teste do layout do hero: a = card e print dentro do hero; b = hero limpo com seta, depois faixa e print com card 2x2
-const LAY = params.get('lay') === 'b' ? 'b' : 'a'
+// teste do layout do topo:
+// a = card e print dentro do hero
+// b = hero limpo com seta; depois faixa, print + card 2x2 e o texto
+// c = igual ao b, mas o print + card 2x2 vem depois dos números
+// d = faixa, texto e números; depois seção clara com print e texto; o card de requisitos (1x4) vai para o "como usar"
+const LAY = ['b', 'c', 'd'].includes(params.get('lay')) ? params.get('lay') : 'a'
 // monta o link do painel mantendo os outros testes como estão
 const abLink = (over, hash = '') => {
   const q = { hero: HERO, lay: LAY, mf: MF, nums: NUMS, strip: STRIP, ...over }
@@ -57,10 +61,13 @@ function Landing({ release }) {
       {/* C é só a abertura: ao terminar, a página segue no visual do D */}
       <Hero release={release} variant={HERO === 'c' ? 'd' : HERO} strip={STRIP === 'a'} layout={LAY} />
       <main className="z90">
-        {LAY === 'b' && <HeroB release={release} strip={STRIP === 'a'} />}
+        {LAY !== 'a' && <StripBlock strip={STRIP === 'a'} />}
+        {LAY === 'b' && <ShotReqs release={release} />}
         <Manifesto order={MF} style={NUMS} />
+        {LAY === 'c' && <ShotReqs release={release} />}
+        {LAY === 'd' && <ShotText />}
         <Dia />
-        <ComoUsar />
+        <ComoUsar release={LAY === 'd' ? release : null} />
         <Recursos />
         <TresMomentos />
         {STRIP === 'b' && <StripCta below />}
@@ -83,7 +90,7 @@ function Landing({ release }) {
           <button className="ab-tog" onClick={() => setAbOpen(!abOpen)} aria-label={abOpen ? 'Recolher testes' : 'Abrir testes'}><i className={`ph ${abOpen ? 'ph-caret-left' : 'ph-flask'}`}></i>{!abOpen && 'testes'}</button>
           <span className="ab-in">
           hero {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={abLink({ hero: v })} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}
-          <span className="ab-sep">layout</span> {['a', 'b'].map((v) => <a key={v} href={abLink({ lay: v })} className={LAY === v ? 'on' : ''} title={v === 'a' ? 'card e print no hero' : 'hero limpo com seta; faixa, print e card 2x2 depois'}>{v.toUpperCase()}</a>)}
+          <span className="ab-sep">layout</span> {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={abLink({ lay: v })} className={LAY === v ? 'on' : ''} title={{ a: 'card e print no hero', b: 'faixa, print + card 2x2, texto', c: 'faixa, texto, print + card 2x2', d: 'faixa, texto, print no claro, card no como usar' }[v]}>{v.toUpperCase()}</a>)}
           <span className="ab-sep">ordem</span> {['a', 'b'].map((v) => <a key={v} href={abLink({ mf: v }, 'manifesto')} className={MF === v ? 'on' : ''} title={v === 'a' ? 'frase antes dos números' : 'números antes da frase'}>{v.toUpperCase()}</a>)}
           <span className="ab-sep">números</span> {['a', 'c'].map((v) => <a key={v} href={abLink({ nums: v }, 'manifesto')} className={NUMS === v ? 'on' : ''} title={v === 'a' ? 'em círculos' : 'só os números'}>{v.toUpperCase()}</a>)}
           <span className="ab-sep">botão</span> {['a', 'b'].map((v) => <a key={v} href={abLink({ strip: v }, v === 'a' ? 'topo' : 'por-dentro')} className={STRIP === v ? 'on' : ''} title={v === 'a' ? 'botão colado na faixa' : 'botão mais abaixo'}>{v.toUpperCase()}</a>)}

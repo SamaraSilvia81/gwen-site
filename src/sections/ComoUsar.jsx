@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Reqs from '../components/Reqs'
 
 // passos do download ao primeiro foco. Ao passar o mouse, o card abre e mostra o vídeo do passo;
 // os outros encolhem. Para colocar um vídeo, é só preencher "video" com o caminho em public/ (ex.: '/videos/passo-1.mp4')
@@ -19,7 +20,7 @@ function Video({ src, n }) {
   )
 }
 
-export default function ComoUsar() {
+export default function ComoUsar({ release = null }) {
   // só um card aberto por vez: o estado manda, não o :hover/:focus do CSS (que deixava dois abertos)
   const [open, setOpen] = useState(null)
   return (
@@ -57,6 +58,7 @@ export default function ComoUsar() {
             </div>
           ))}
         </div>
+        {release && <Reqs release={release} className="paper-reqs" />}
       </div>
     </section>
   )

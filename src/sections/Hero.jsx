@@ -3,7 +3,7 @@ import Reqs from '../components/Reqs'
 
 // layout b: o hero fica só com o texto e uma seta; a faixa, o print e o card 2x2 vêm logo depois (ver HeroB em App)
 export default function Hero({ release, variant, strip = false, layout = 'a' }) {
-  const b = layout === 'b'
+  const b = layout !== 'a'
   return (
     <>
 <header className="hero" id="topo" data-v={variant}>
@@ -42,19 +42,45 @@ export default function Hero({ release, variant, strip = false, layout = 'a' }) 
   )
 }
 
-// layout b: depois do hero, a faixa dos apps e, embaixo, o print com o card de requisitos 2x2 ao lado
-export function HeroB({ release, strip = false }) {
+// layouts b, c e d: a faixa dos apps vem logo depois do hero
+export function StripBlock({ strip = false }) {
   return (
     <div className="hero-b" id="depois-hero">
       <AppsStrip />
       {strip && <StripCta />}
-      <div className="wrap hero-b-row">
-        <div className="win">
-          <div className="win-bar"><span className="dots"><i></i><i></i><i></i></span><span>G.W.E.N. / Início</span><span>2 sessões · 1:44:06</span></div>
-          <img src="/prints/inicio-roxo.webp" alt="Tela inicial da G.W.E.N. num tema roxo, com duas sessões em paralelo, onde parei, saúde e semana" width="2560" height="1600" />
-        </div>
-        <Reqs release={release} className="grid2" />
-      </div>
     </div>
+  )
+}
+
+const HeroWin = () => (
+  <div className="win">
+    <div className="win-bar"><span className="dots"><i></i><i></i><i></i></span><span>G.W.E.N. / Início</span><span>2 sessões · 1:44:06</span></div>
+    <img src="/prints/inicio-roxo.webp" alt="Tela inicial da G.W.E.N. num tema roxo, com duas sessões em paralelo, onde parei, saúde e semana" width="2560" height="1600" />
+  </div>
+)
+
+// layouts b e c: o print com o card de requisitos 2x2 ao lado
+export function ShotReqs({ release }) {
+  return (
+    <div className="wrap hero-b-row">
+      <HeroWin />
+      <Reqs release={release} className="grid2" />
+    </div>
+  )
+}
+
+// layout d: seção clara com o print e um texto ao lado
+export function ShotText() {
+  return (
+    <section className="s paper shot-text" id="inicio-app">
+      <div className="wrap shot-text-row">
+        <HeroWin />
+        <div className="shot-text-t">
+          <span className="label">$ gwen <b>--inicio</b></span>
+          <h2 className="h2">Tudo do seu dia<br /><span className="out">numa tela só.</span></h2>
+          <p>Sessões em paralelo, onde você parou, os lembretes de saúde e a sua semana. É a primeira coisa que aparece quando você abre a G.W.E.N.</p>
+        </div>
+      </div>
+    </section>
   )
 }
