@@ -6,6 +6,7 @@ const LINKS = [
   ['Para você', '/#para-voce'],
   ['Privacidade', '/#privacidade'],
   ['Casos', '/#casos'],
+  ['História', '/historia'],
   ['Planos', '/#planos'],
   ['Dúvidas', '/#duvidas'],
   ['Contato', '/contato'],

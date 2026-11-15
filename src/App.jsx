@@ -20,6 +20,7 @@ import Planos from './sections/Planos'
 import Duvidas from './sections/Duvidas'
 import Final from './sections/Final'
 import Novidades from './pages/Novidades'
+import Historia from './pages/Historia'
 import { useRelease } from './lib/release'
 import { landingEffects, playIntro } from './lib/effects'
 
@@ -108,7 +109,7 @@ export default function App() {
     <>
       <div className="grain" aria-hidden="true"></div>
       <Defs />
-      {page === '/novidades' ? <Novidades release={release} /> : <Landing release={release} />}
+      {page === '/novidades' ? <Novidades release={release} /> : page === '/historia' ? <Historia release={release} /> : <Landing release={release} />}
     </>
   )
 }
