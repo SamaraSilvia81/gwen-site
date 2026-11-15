@@ -2,7 +2,7 @@ export default function Planos() {
   return (
     <>
 {/* ============ 10. PLANOS ============ */}
-<section className="s" id="planos" style={{paddingTop:'0'}}>
+<section className="s paper planos" id="planos">
   <div className="wrap">
     <div className="s-head c rv">
       <span className="label">$ gwen <b>--planos</b></span>

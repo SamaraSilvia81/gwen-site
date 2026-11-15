@@ -15,7 +15,7 @@ import Mais from './sections/Mais'
 import ParaVoce from './sections/ParaVoce'
 import Privacidade from './sections/Privacidade'
 import Casos from './sections/Casos'
-import Contato from './sections/Contato'
+// Contato saiu da landing: o formulário vai ganhar a página própria /contato (ainda não feita)
 import Planos from './sections/Planos'
 import Duvidas from './sections/Duvidas'
 import Final from './sections/Final'
@@ -61,7 +61,6 @@ function Landing({ release }) {
         <ParaVoce />
         <Privacidade />
         <Casos />
-        <Contato />
         <Planos />
         <Duvidas />
       </main>

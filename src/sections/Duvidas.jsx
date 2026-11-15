@@ -2,12 +2,12 @@ export default function Duvidas() {
   return (
     <>
 {/* ============ 11. DÚVIDAS ============ */}
-<section className="s" id="duvidas" style={{paddingTop:'0'}}>
+<section className="s" id="duvidas">
   <div className="wrap faq">
     <div className="s-head rv" style={{marginBottom:'0'}}>
       <span className="label">$ gwen <b>--duvidas</b></span>
       <h2 className="h2">Perguntas<br /><span className="out">frequentes.</span></h2>
-      <p>Não achou? <a href="#contato" style={{color:'var(--bone)', borderBottom:'1px solid'}}>Mande uma mensagem.</a></p>
+      <p>Não achou? <a href="/contato" style={{color:'var(--bone)', borderBottom:'1px solid'}}>Mande uma mensagem.</a></p>
     </div>
     <div className="rv d1">
       <details open><summary>A G.W.E.N. é grátis?<i className="ph ph-plus"></i></summary><p>Sim. O uso local é gratuito e vai continuar sendo. Os planos pagos, depois do beta, são para nuvem e para recursos de quem fatura com projetos.</p></details>

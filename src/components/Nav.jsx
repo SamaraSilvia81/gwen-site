@@ -8,7 +8,7 @@ const LINKS = [
   ['Casos', '/#casos'],
   ['Planos', '/#planos'],
   ['Dúvidas', '/#duvidas'],
-  ['Contato', '/#contato'],
+  ['Contato', '/contato'],
 ]
 
 export default function Nav({ release }) {

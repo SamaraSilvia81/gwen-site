@@ -737,3 +737,30 @@ section.s.recursos{padding-top:clamp(100px,12vw,160px)}
 /* três momentos no claro */
 .tres .story-end p .out{-webkit-text-stroke:1.3px rgba(10,10,11,.7)}
 .tres .story-end .map span{color:var(--paper-ink);border-color:var(--paper-rule);background:#F6F4F0}
+/* casos e planos no claro */
+section.s.casos{padding-top:clamp(100px,12vw,160px)}
+.casos .case{margin-bottom:16px}
+.casos-quotes{margin-top:0}
+.paper .case{background:#F6F4F0;border-color:var(--paper-rule);color:var(--paper-ink)}
+.paper .case .av{background:var(--paper-ink);color:var(--paper)}
+.paper .case .who small,.paper .case li b,.paper .case .badge2{color:var(--paper-muted)}
+.paper .case blockquote{color:var(--paper-ink)}
+.paper .case li,.paper .case .badge2{border-color:var(--paper-rule);color:var(--paper-ink)}
+.paper .quote{background:#F6F4F0;border-color:var(--paper-rule)}
+.paper .quote blockquote{color:var(--paper-ink)}
+.paper .q-mark{color:var(--paper-rule)}
+.paper .q-av{background:var(--paper);border-color:var(--paper-rule);color:var(--paper-ink)}
+.paper .quote figcaption small{color:var(--paper-muted)}
+.paper .q-tags span{border-color:var(--paper-rule);color:var(--paper-muted)}
+.paper .slot{border-color:var(--paper-rule)}
+.paper .slot p{color:var(--paper-muted)}
+.paper .slot p b{color:var(--paper-ink)}
+.paper .btn-ghost{color:var(--paper-ink);border-color:rgba(10,10,11,.35);background:transparent}
+.paper .btn-ghost:hover{border-color:var(--paper-ink)}
+.paper .plan{background:#F6F4F0;border-color:var(--paper-rule);color:var(--paper-ink)}
+.paper .plan .for,.paper .price small,.paper .plans-note{color:var(--paper-muted)}
+.paper .plan.hl{background:var(--paper-ink);color:var(--paper);border-color:var(--paper-ink)}
+.paper .plan.hl .for,.paper .plan.hl .price small{color:#9a9aa0}
+.paper .plan.hl .btn-ink{background:var(--paper);color:var(--paper-ink)}
+.paper .hov:hover{border-color:rgba(10,10,11,.4)}
+.paper .hov::before{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(10,10,11,.05),transparent 60%)}
