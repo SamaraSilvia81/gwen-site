@@ -685,3 +685,4 @@ section[id]{scroll-margin-top:84px}
 @media (max-width:760px){.mf-nums.st-c.n4 .mf-circles,.mf-nums.st-c.n3 .mf-circles{grid-template-columns:repeat(2,1fr)}}
 .apps-strip.in-hero{padding:0}
 .apps-strip.in-hero .strip{margin-top:100px}
+.strip-cta.below{margin:0 0 clamp(60px,7vw,100px)}

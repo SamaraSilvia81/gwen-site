@@ -9,7 +9,7 @@ import Dia from './sections/Dia'
 import ComoUsar from './sections/ComoUsar'
 import Recursos from './sections/Recursos'
 import PorDentro from './sections/PorDentro'
-import AppsStrip from './components/AppsStrip'
+import { StripCta } from './components/AppsStrip'
 import Mais from './sections/Mais'
 import ParaVoce from './sections/ParaVoce'
 import Privacidade from './sections/Privacidade'
@@ -31,7 +31,7 @@ if (HERO === 'c') document.documentElement.classList.add('intro-run')
 const MF = params.get('mf') === 'b' ? 'b' : 'a'
 // estilo dos números: a = círculos, c = só os números grandes
 const NUMS = params.get('nums') === 'c' ? 'c' : 'a'
-// teste da faixa dos apps: a = no hero, logo abaixo da janela; b = mais abaixo, antes do "por dentro"
+// teste do botão "Tudo isso abre junto com o seu projeto": a = no hero, colado na faixa; b = mais abaixo, antes do "por dentro"
 const STRIP = params.get('strip') === 'a' ? 'a' : 'b'
 const SHOW_AB = import.meta.env.DEV || params.has('ab')
 
@@ -50,7 +50,7 @@ function Landing({ release }) {
         <Dia />
         <ComoUsar />
         <Recursos />
-        {STRIP === 'b' && <AppsStrip />}
+        {STRIP === 'b' && <StripCta below />}
         <PorDentro />
         <Mais />
         <ParaVoce />
@@ -71,7 +71,7 @@ function Landing({ release }) {
           hero {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={`?hero=${v}&mf=${MF}&nums=${NUMS}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}`} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}
           <span className="ab-sep">ordem</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${v}&nums=${NUMS}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}#manifesto`} className={MF === v ? 'on' : ''} title={v === 'a' ? 'frase antes dos números' : 'números antes da frase'}>{v.toUpperCase()}</a>)}
           <span className="ab-sep">números</span> {['a', 'c'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${MF}&nums=${v}&strip=${STRIP}${params.has('ab') ? '&ab' : ''}#manifesto`} className={NUMS === v ? 'on' : ''} title={v === 'a' ? 'em círculos' : 'só os números'}>{v.toUpperCase()}</a>)}
-          <span className="ab-sep">faixa</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${MF}&nums=${NUMS}&strip=${v}${params.has('ab') ? '&ab' : ''}#${v === 'a' ? 'topo' : 'por-dentro'}`} className={STRIP === v ? 'on' : ''} title={v === 'a' ? 'faixa no hero' : 'faixa mais abaixo'}>{v.toUpperCase()}</a>)}
+          <span className="ab-sep">botão</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${MF}&nums=${NUMS}&strip=${v}${params.has('ab') ? '&ab' : ''}#${v === 'a' ? 'topo' : 'por-dentro'}`} className={STRIP === v ? 'on' : ''} title={v === 'a' ? 'botão colado na faixa' : 'botão mais abaixo'}>{v.toUpperCase()}</a>)}
         </div>
       )}
     </>

@@ -1,4 +1,4 @@
-import AppsStrip from '../components/AppsStrip'
+import AppsStrip, { StripCta } from '../components/AppsStrip'
 
 export default function Hero({ release, variant, strip = false }) {
   return (
@@ -29,7 +29,8 @@ export default function Hero({ release, variant, strip = false }) {
         <img src="/prints/inicio-roxo.webp" alt="Tela inicial da G.W.E.N. num tema roxo, com duas sessões em paralelo, onde parei, saúde e semana" width="2560" height="1600" />
       </div>
     </div>
-    {strip && <AppsStrip inHero />}
+    <AppsStrip inHero />
+    {strip && <StripCta />}
 </div>
 </header>
     </>
