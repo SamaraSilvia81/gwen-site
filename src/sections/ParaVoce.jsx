@@ -2,7 +2,7 @@ export default function ParaVoce() {
   return (
     <>
 {/* ============ 6. PARA VOCÊ ============ */}
-<section className="s" id="para-voce" style={{paddingTop:'0'}}>
+<section className="s" id="para-voce">
   <span className="glow" style={{width:'520px', height:'520px', right:'-200px', top:'10%'}}></span>
   <div className="wrap">
     <div className="s-head rv">
