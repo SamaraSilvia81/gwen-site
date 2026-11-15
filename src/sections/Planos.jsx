@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 // planos: os três cartões e, embaixo, a comparação detalhada do que cabe em cada um
 const Y = { s: 'y' }, N = { s: 'n' }
 const L = (t) => ({ s: 't', t })
@@ -44,6 +46,7 @@ function Cel({ v }) {
 }
 
 export default function Planos() {
+  const [aberto, setAberto] = useState(false)
   return (
     <section className="s paper planos" id="planos">
       <div className="wrap">
@@ -93,8 +96,17 @@ export default function Planos() {
           </div>
         </div>
 
-        {/* o que cabe em cada plano */}
-        <div className="ptable rv">
+        <div className="pmore rv">
+          <p>Quer saber exatamente o que entra no Gratuito e o que fica para os planos pagos?</p>
+          <button type="button" className="btn btn-line-ink" onClick={() => setAberto(!aberto)} aria-expanded={aberto} aria-controls="planos-detalhes">
+            <i className={`ph ${aberto ? 'ph-caret-up' : 'ph-list-checks'}`}></i>{aberto ? 'Esconder detalhes' : 'Ver detalhes dos planos'}
+          </button>
+        </div>
+
+        {/* o que cabe em cada plano: aparece ao clicar */}
+        <div className={`pdetails${aberto ? ' open' : ''}`} id="planos-detalhes">
+        <div className="pdetails-in">
+        <div className="ptable">
           <div className="ptable-h">
             <h3>O que cabe em cada plano</h3>
             <p>No beta fechado, tudo está liberado. Os preços e o tamanho dos limites saem junto com o lançamento público.</p>
@@ -116,10 +128,12 @@ export default function Planos() {
           </div>
         </div>
 
-        <div className="prules rv">
+        <div className="prules">
           <div><i className="ph ph-heart"></i><b>O núcleo nunca é pago</b><span>Projetos, tempo, pausa e saúde continuam grátis, sem prazo.</span></div>
           <div><i className="ph ph-cloud"></i><b>Paga só o que custa servidor</b><span>Nuvem e o que só faz falta quando o negócio cresce.</span></div>
           <div><i className="ph ph-flask"></i><b>Beta com tudo liberado</b><span>Quem testa agora usa os planos pagos sem pagar nada.</span></div>
+        </div>
+        </div>
         </div>
       </div>
     </section>

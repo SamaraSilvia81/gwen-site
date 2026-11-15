@@ -955,3 +955,24 @@ section.s.hist-quem{padding-top:0}
 .form .check{display:flex;gap:10px;align-items:center;font-family:var(--f-body);font-size:14px;color:var(--bone-2)}
 .form .check input{width:16px;height:16px;padding:0;accent-color:#EDEBE7}
 @media (max-width:900px){.contact-page .contact{grid-template-columns:1fr}}
+/* planos: convite para os detalhes e a área que abre */
+.pmore{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;margin-top:clamp(36px,4vw,52px);text-align:center}
+.pmore p{color:var(--paper-muted);font-size:16px}
+.pdetails{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.pdetails.open{grid-template-rows:1fr}
+.pdetails-in{overflow:hidden}
+.pdetails .ptable{margin-top:clamp(28px,3vw,40px)}
+/* anexo no formulário */
+.form .file{gap:7px}
+.form .opt{color:#55555c;margin-left:6px}
+.file-box{position:relative;display:flex;align-items:center;gap:10px;border:1px dashed var(--rule-2);border-radius:10px;padding:12px 14px;background:var(--ink);font-family:var(--f-body);font-size:15px;color:var(--bone-2);transition:border-color .2s;overflow:hidden}
+.file-box:hover,.file-box:focus-within{border-color:var(--bone)}
+.file-box input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.file-box i{font-size:18px}
+.file-box>span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-x{position:relative;z-index:2;border:0;background:none;color:var(--muted);cursor:pointer;padding:2px;display:grid;place-items:center}
+.file-x:hover{color:var(--bone)}
+.form .n.ok{color:#9be0a8}
+.form .n.err{color:#f2a3a3}
+.form .btn[disabled]{opacity:.7;cursor:progress}
+.spin{animation:spin 1s linear infinite}
