@@ -30,7 +30,9 @@ const params = new URLSearchParams(location.search)
 const HERO = ['a', 'b', 'c', 'd'].includes(params.get('hero')) ? params.get('hero') : 'c'
 // painel do teste A/B: aparece no dev ou com ?ab no endereço
 // enquanto a abertura roda, o hero fica guardado para entrar em cena depois dela
-if (HERO === 'c') document.documentElement.classList.add('intro-run')
+// só na landing: nas outras páginas não tem abertura, e essa classe escondia a topbar
+const NA_LANDING = (location.pathname.replace(/\/+$/, '') || '/') === '/'
+if (HERO === 'c' && NA_LANDING) document.documentElement.classList.add('intro-run')
 // teste dos números do manifesto: a = frase e depois números, b = números primeiro
 const MF = params.get('mf') === 'b' ? 'b' : 'a'
 // estilo dos números: a = círculos, c = só os números grandes

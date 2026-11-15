@@ -976,3 +976,13 @@ section.s.hist-quem{padding-top:0}
 .form .n.err{color:#f2a3a3}
 .form .btn[disabled]{opacity:.7;cursor:progress}
 .spin{animation:spin 1s linear infinite}
+/* card de requisitos: cada coluna inverte ao passar o mouse */
+.reqs{overflow:hidden}
+.reqs div{transition:background .3s var(--ease),color .3s var(--ease)}
+.reqs div small,.reqs div span,.reqs div b{transition:color .3s var(--ease)}
+.reqs div:hover{background:var(--bone)}
+.reqs div:hover b{color:var(--void)}
+.reqs div:hover small,.reqs div:hover span{color:#55555c}
+.paper-reqs div:hover{background:var(--paper-ink)}
+.paper-reqs div:hover b{color:var(--paper)}
+.paper-reqs div:hover small,.paper-reqs div:hover span{color:#a8a39b}
