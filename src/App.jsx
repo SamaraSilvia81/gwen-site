@@ -26,6 +26,8 @@ const HERO = ['a', 'b', 'c', 'd'].includes(params.get('hero')) ? params.get('her
 // painel do teste A/B: aparece no dev ou com ?ab no endereço
 // enquanto a abertura roda, o hero fica guardado para entrar em cena depois dela
 if (HERO === 'c') document.documentElement.classList.add('intro-run')
+// teste dos números do manifesto: a = frase e depois números, b = números primeiro
+const MF = params.get('mf') === 'b' ? 'b' : 'a'
 const SHOW_AB = import.meta.env.DEV || params.has('ab')
 
 function Landing({ release }) {
@@ -39,7 +41,7 @@ function Landing({ release }) {
       {/* C é só a abertura: ao terminar, a página segue no visual do D */}
       <Hero release={release} variant={HERO === 'c' ? 'd' : HERO} />
       <main className="z90">
-        <Manifesto />
+        <Manifesto order={MF} />
         <Dia />
         <ComoUsar />
         <Recursos />
@@ -59,7 +61,10 @@ function Landing({ release }) {
         <i className="ph-bold ph-arrow-up"></i>
       </a>
       {SHOW_AB && (
-        <div className="ab">hero {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={`?hero=${v}${params.has('ab') ? '&ab' : ''}`} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}</div>
+        <div className="ab">
+          hero {['a', 'b', 'c', 'd'].map((v) => <a key={v} href={`?hero=${v}&mf=${MF}${params.has('ab') ? '&ab' : ''}`} className={HERO === v ? 'on' : ''}>{v.toUpperCase()}</a>)}
+          <span className="ab-sep">números</span> {['a', 'b'].map((v) => <a key={v} href={`?hero=${HERO}&mf=${v}${params.has('ab') ? '&ab' : ''}#manifesto`} className={MF === v ? 'on' : ''} title={v === 'a' ? 'frase antes dos números' : 'números antes da frase'}>{v.toUpperCase()}</a>)}
+        </div>
       )}
     </>
   )
