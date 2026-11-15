@@ -1,6 +1,7 @@
 /**
  * Puxa da release mais recente do gwen-app o que o site mostra:
- * versão, link e tamanho do instalador e a lista de versões com as notas.
+ * versão, link e tamanho do instalador, a lista de versões com as notas,
+ * quantas vezes cada instalador foi baixado e as estrelas do repositório.
  *
  * Roda antes de cada build (prebuild). O resultado vai para
  * src/generated/releases.json, que entra no bundle. Assim o site já nasce
@@ -27,10 +28,14 @@ try {
       url: r.html_url,
       notes: r.body || '',
       exe: exe ? { name: exe.name, size: exe.size, url: exe.browser_download_url } : null,
+      downloads: exe?.download_count ?? 0,
     }
   })
+  // estrelas do repositório: entram nos números da landing
+  const repo = await fetch(`https://api.github.com/repos/${REPO}`, { headers }).then((r) => (r.ok ? r.json() : {})).catch(() => ({}))
+  const stars = repo.stargazers_count ?? 0
   await mkdir(new URL('../src/generated/', import.meta.url), { recursive: true })
-  await writeFile(OUT, JSON.stringify({ fetchedAt: new Date().toISOString(), releases }, null, 2))
+  await writeFile(OUT, JSON.stringify({ fetchedAt: new Date().toISOString(), stars, releases }, null, 2))
   console.log(`[releases] ${releases.length} versões, última ${releases[0]?.tag ?? 'nenhuma'}`)
 } catch (err) {
   try {

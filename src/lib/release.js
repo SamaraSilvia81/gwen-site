@@ -32,7 +32,7 @@ export function useReleases() {
         if (!alive) return
         const fresh = data.filter((r) => !r.draft && !r.prerelease).map((r) => {
           const exe = (r.assets || []).find((a) => a.name.endsWith('-setup.exe'))
-          return { tag: r.tag_name, name: r.name, date: r.published_at, url: r.html_url, notes: r.body || '', exe: exe ? { name: exe.name, size: exe.size, url: exe.browser_download_url } : null }
+          return { tag: r.tag_name, name: r.name, date: r.published_at, url: r.html_url, notes: r.body || '', exe: exe ? { name: exe.name, size: exe.size, url: exe.browser_download_url } : null, downloads: exe?.download_count ?? 0 }
         })
         if (fresh.length) setList(fresh)
       })
@@ -45,4 +45,24 @@ export function useReleases() {
 export function useRelease() {
   const list = useReleases()
   return toView(list[0])
+}
+
+/**
+ * Números da landing, sempre de dados reais do GitHub:
+ * downloads somados de todas as versões, quantas versões saíram e estrelas do repositório.
+ * Começa com o que o build trouxe e atualiza no navegador.
+ */
+export function useStats() {
+  const list = useReleases()
+  const [stars, setStars] = useState(built.stars ?? 0)
+  useEffect(() => {
+    let alive = true
+    fetch(`https://api.github.com/repos/${REPO}`, { headers: { Accept: 'application/vnd.github+json' } })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d) => { if (alive && typeof d.stargazers_count === 'number') setStars(d.stargazers_count) })
+      .catch(() => {})
+    return () => { alive = false }
+  }, [])
+  const downloads = list.reduce((n, r) => n + (r.downloads || 0), 0)
+  return { downloads, versions: list.length, stars }
 }

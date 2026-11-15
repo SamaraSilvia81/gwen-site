@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Intro from './components/Intro'
 import Hero from './sections/Hero'
+import Manifesto from './sections/Manifesto'
 import Dia from './sections/Dia'
 import ComoUsar from './sections/ComoUsar'
 import Recursos from './sections/Recursos'
@@ -38,6 +39,7 @@ function Landing({ release }) {
       {/* C é só a abertura: ao terminar, a página segue no visual do D */}
       <Hero release={release} variant={HERO === 'c' ? 'd' : HERO} />
       <main className="z90">
+        <Manifesto />
         <Dia />
         <ComoUsar />
         <Recursos />
