@@ -38,6 +38,8 @@ const INTRO_KEY = 'gwen.introVista'
 const introVista = () => { try { return sessionStorage.getItem(INTRO_KEY) === '1' } catch { return false } }
 const COM_INTRO = HERO === 'c' && NA_LANDING && (params.get('hero') === 'c' || !introVista())
 if (COM_INTRO) document.documentElement.classList.add('intro-run')
+// páginas internas entram com um fade, mesmo quando o React demora um quadro para desenhar
+if (!NA_LANDING) document.documentElement.classList.add('pg-inner')
 // teste dos números do manifesto: a = frase e depois números, b = números primeiro
 const MF = params.get('mf') === 'b' ? 'b' : 'a'
 // estilo dos números: a = círculos, c = só os números grandes

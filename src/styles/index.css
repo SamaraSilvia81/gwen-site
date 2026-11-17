@@ -1002,3 +1002,19 @@ section.s.hist-quem{padding-top:0}
 .contact-page .blob.b1{left:-160px;top:8%}
 .contact-bg{z-index:-3}
 .contact-page::after{z-index:-2}
+
+/* ── troca de página (17/11) ──
+   o site navega entre páginas de verdade (/, /novidades, /historia, /contato);
+   a View Transition do navegador cruza uma na outra. O topo fica parado. */
+@view-transition{navigation:auto}
+.nav{view-transition-name:topo}
+::view-transition-old(root){animation:vtOut .32s cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:vtIn .6s cubic-bezier(.16,1,.3,1) both}
+::view-transition-group(topo){animation-duration:.4s}
+@keyframes vtOut{to{opacity:0;transform:translateY(-10px) scale(.985);filter:blur(6px)}}
+@keyframes vtIn{from{opacity:0;transform:translateY(16px) scale(1.01);filter:blur(8px)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+.pg-inner #root>*{animation:pgIn .6s cubic-bezier(.16,1,.3,1) both}
+.pg-inner #root>.nav,.pg-inner #root>nav{animation:none}
+@keyframes pgIn{from{opacity:0;transform:translateY(14px);filter:blur(6px)}}
+@media (prefers-reduced-motion:reduce){.pg-inner #root>*{animation:none}}
