@@ -36,7 +36,8 @@ const NA_LANDING = (location.pathname.replace(/\/+$/, '') || '/') === '/'
 // ?hero=c no endereço força, para testar.
 const INTRO_KEY = 'gwen.introVista'
 const introVista = () => { try { return sessionStorage.getItem(INTRO_KEY) === '1' } catch { return false } }
-const COM_INTRO = HERO === 'c' && NA_LANDING && (params.get('hero') === 'c' || !introVista())
+// chegando com #secao (de uma página interna), vai direto para ela, sem abertura
+const COM_INTRO = HERO === 'c' && NA_LANDING && !location.hash && (params.get('hero') === 'c' || !introVista())
 if (COM_INTRO) document.documentElement.classList.add('intro-run')
 // páginas internas entram com um fade, mesmo quando o React demora um quadro para desenhar
 if (!NA_LANDING) document.documentElement.classList.add('pg-inner')
@@ -66,6 +67,16 @@ function Landing({ release }) {
   const [abOpen, setAbOpen] = useState(() => { try { return localStorage.getItem('gwen.ab') !== '0' } catch { return true } })
   useEffect(() => { try { localStorage.setItem('gwen.ab', abOpen ? '1' : '0') } catch { /* sem storage */ } }, [abOpen])
   useEffect(() => landingEffects(), [])
+  // o navegador procura a #secao antes do React desenhar a página e não acha;
+  // então rola aqui, e de novo quando imagens acima terminam de carregar e empurram tudo
+  useEffect(() => {
+    const id = decodeURIComponent(location.hash.slice(1))
+    if (!id) return
+    const go = (behavior) => document.getElementById(id)?.scrollIntoView({ behavior, block: 'start' })
+    const t = [requestAnimationFrame(() => go('auto'))]
+    const timers = [250, 700, 1400].map((ms) => setTimeout(() => go('auto'), ms))
+    return () => { t.forEach(cancelAnimationFrame); timers.forEach(clearTimeout) }
+  }, [])
   useEffect(() => (intro ? playIntro(() => setIntro(false)) : undefined), [intro])
   return (
     <>
