@@ -134,9 +134,13 @@ export function playIntro(onDone) {
     const root = document.documentElement
     root.classList.remove('intro-run'); root.classList.add('hero-in')
     intro.classList.add('gone'); document.body.style.overflow = ''
+    removeEventListener('keydown', onKey)
     setTimeout(onDone, 1200)
   }
   document.getElementById('introSkip').onclick = finish
+  // Esc também pula
+  const onKey = (e) => { if (e.key === 'Escape') finish() }
+  addEventListener('keydown', onKey)
   // cada letra entra no instante da tecla correspondente no áudio, então som e texto andam juntos
   const typeSynced = async (lines) => {
     const caret = T.querySelector('.caret'), t0 = performance.now()
@@ -171,5 +175,5 @@ export function playIntro(onDone) {
     await wait(650); logo.classList.add('on'); cur.style.opacity = 0
     await wait(1100); finish()
   })()
-  return () => { done = true; document.body.style.overflow = ''; document.documentElement.classList.remove('intro-run') }
+  return () => { done = true; removeEventListener('keydown', onKey); document.body.style.overflow = ''; document.documentElement.classList.remove('intro-run') }
 }

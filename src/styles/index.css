@@ -988,14 +988,17 @@ section.s.hist-quem{padding-top:0}
 .paper-reqs div:hover small,.paper-reqs div:hover span{color:#a8a39b}
 
 /* ── escala e contraste (17/11) ──
-   seções em 90% (.z90), abertura em 90%, topo em 85% e mais escuro */
+   seções em 90% (.z90), abertura em 90%, topo mais escuro */
 .intro>*{zoom:.9}
-.nav-in{zoom:.85}
 .nav.solid{background:rgba(6,6,7,.92)}
 .nav-pill,.nav-in .logo,.nav-news,.nav-burger,.ver{background:rgba(6,6,7,.86);border-color:rgba(255,255,255,.07)}
 .nav.solid .nav-pill,.nav.solid .nav-in .logo{background:transparent;border-color:transparent}
 /* contato: fundo e formulário mais escuros */
-.contact-bg{filter:blur(4px) brightness(.24)}
-.contact-page::after{background:linear-gradient(90deg,rgba(6,6,7,.95),rgba(6,6,7,.78) 60%,rgba(6,6,7,.92)),linear-gradient(180deg,transparent 70%,var(--void))}
+.contact-bg{filter:blur(4px) brightness(.3)}
+.contact-page::after{background:linear-gradient(90deg,rgba(6,6,7,.9),rgba(6,6,7,.7) 60%,rgba(6,6,7,.86)),linear-gradient(180deg,transparent 70%,var(--void))}
 .contact-page .form{background:rgba(8,8,9,.94)}
 .contact-ways li{background:rgba(6,6,7,.8)}
+.contact-page .blob{z-index:-1;opacity:.1}
+.contact-page .blob.b1{left:-160px;top:8%}
+.contact-bg{z-index:-3}
+.contact-page::after{z-index:-2}

@@ -32,7 +32,12 @@ const HERO = ['a', 'b', 'c', 'd'].includes(params.get('hero')) ? params.get('her
 // enquanto a abertura roda, o hero fica guardado para entrar em cena depois dela
 // só na landing: nas outras páginas não tem abertura, e essa classe escondia a topbar
 const NA_LANDING = (location.pathname.replace(/\/+$/, '') || '/') === '/'
-if (HERO === 'c' && NA_LANDING) document.documentElement.classList.add('intro-run')
+// a abertura roda uma vez por aba: recarregar ou voltar para a home na mesma aba não repete.
+// ?hero=c no endereço força, para testar.
+const INTRO_KEY = 'gwen.introVista'
+const introVista = () => { try { return sessionStorage.getItem(INTRO_KEY) === '1' } catch { return false } }
+const COM_INTRO = HERO === 'c' && NA_LANDING && (params.get('hero') === 'c' || !introVista())
+if (COM_INTRO) document.documentElement.classList.add('intro-run')
 // teste dos números do manifesto: a = frase e depois números, b = números primeiro
 const MF = params.get('mf') === 'b' ? 'b' : 'a'
 // estilo dos números: a = círculos, c = só os números grandes
@@ -53,7 +58,8 @@ const abLink = (over, hash = '') => {
 const SHOW_AB = import.meta.env.DEV || params.has('ab')
 
 function Landing({ release }) {
-  const [intro, setIntro] = useState(HERO === 'c')
+  const [intro, setIntro] = useState(COM_INTRO)
+  useEffect(() => { if (intro) try { sessionStorage.setItem(INTRO_KEY, '1') } catch { /* sem storage */ } }, [intro])
   // painel dos testes recolhível; lembra se estava aberto
   const [abOpen, setAbOpen] = useState(() => { try { return localStorage.getItem('gwen.ab') !== '0' } catch { return true } })
   useEffect(() => { try { localStorage.setItem('gwen.ab', abOpen ? '1' : '0') } catch { /* sem storage */ } }, [abOpen])

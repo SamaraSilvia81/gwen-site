@@ -50,6 +50,7 @@ export default function Contato({ release }) {
       <Nav release={release} />
       <main className="contact-page">
         <div className="contact-bg" aria-hidden="true"></div>
+        <div className="blob b1" aria-hidden="true"></div>
         <div className="wrap contact">
           <div className="contact-l">
             <span className="label">$ gwen <b>--contato</b></span>
