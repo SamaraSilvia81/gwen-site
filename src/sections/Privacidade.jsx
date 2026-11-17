@@ -19,6 +19,7 @@ export default function Privacidade() {
       <div><i className="ph ph-eye-slash"></i><span><h5>Nunca lê as suas janelas</h5><p>O mapeamento registra o nome do programa, nunca o título da janela, o vídeo ou o e-mail aberto.</p></span></div>
       <div><i className="ph ph-shield-check"></i><span><h5>Atualizações assinadas</h5><p>Cada versão nova é verificada antes de instalar e não toca nos seus dados.</p></span></div>
       <div><i className="ph ph-cloud-slash"></i><span><h5>Nuvem só se você quiser</h5><p>Backup em JSON a qualquer hora. Sincronização entre computadores fica como opção.</p></span></div>
+      <div><i className="ph ph-chart-bar"></i><span><h5>Contagem anônima</h5><p>Para saber quantas pessoas usam, o app envia um código aleatório, a versão e o sistema. Nada do seu dia. Dá para desligar em Ajustes, e desligar apaga o registro.</p></span></div>
     </div>
   </div>
 </section>
