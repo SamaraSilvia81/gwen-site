@@ -46,7 +46,7 @@ img{display:block;max-width:100%}
 .mono{font-family:var(--f-mono)}
 .label{font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;color:var(--muted)}
 .label b{color:var(--bone);font-weight:500}
-.z90{zoom:.8}
+.z90{zoom:.9}
 
 .grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:100;opacity:.06;mix-blend-mode:screen;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -986,3 +986,16 @@ section.s.hist-quem{padding-top:0}
 .paper-reqs div:hover{background:var(--paper-ink)}
 .paper-reqs div:hover b{color:var(--paper)}
 .paper-reqs div:hover small,.paper-reqs div:hover span{color:#a8a39b}
+
+/* ── escala e contraste (17/11) ──
+   seções em 90% (.z90), abertura em 90%, topo em 85% e mais escuro */
+.intro>*{zoom:.9}
+.nav-in{zoom:.85}
+.nav.solid{background:rgba(6,6,7,.92)}
+.nav-pill,.nav-in .logo,.nav-news,.nav-burger,.ver{background:rgba(6,6,7,.86);border-color:rgba(255,255,255,.07)}
+.nav.solid .nav-pill,.nav.solid .nav-in .logo{background:transparent;border-color:transparent}
+/* contato: fundo e formulário mais escuros */
+.contact-bg{filter:blur(4px) brightness(.24)}
+.contact-page::after{background:linear-gradient(90deg,rgba(6,6,7,.95),rgba(6,6,7,.78) 60%,rgba(6,6,7,.92)),linear-gradient(180deg,transparent 70%,var(--void))}
+.contact-page .form{background:rgba(8,8,9,.94)}
+.contact-ways li{background:rgba(6,6,7,.8)}
